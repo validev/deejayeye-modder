@@ -1,0 +1,14 @@
+diff -Naur orig/smali/dji/midware/data/forbid/DJIFlyForbidController.smali mod/smali/dji/midware/data/forbid/DJIFlyForbidController.smali
+--- orig/smali/dji/midware/data/forbid/DJIFlyForbidController.smali	2018-04-11 10:39:09.899491230 +0200
++++ mod/smali/dji/midware/data/forbid/DJIFlyForbidController.smali	2018-04-11 15:02:40.235514196 +0200
+@@ -605,6 +605,10 @@
+ 
+     .line 464
+     :goto_1
++    new-instance v0, Ljava/util/ArrayList;
++
++    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
++
+     return-object v0
+ 
+     .line 462
