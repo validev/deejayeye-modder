@@ -1,0 +1,172 @@
+diff -Naur orig/res/layout/fpv_new_attitude_view.xml mod/res/layout/fpv_new_attitude_view.xml
+--- orig/res/layout/fpv_new_attitude_view.xml	2018-04-11 12:06:16.889220792 +0200
++++ mod/res/layout/fpv_new_attitude_view.xml	2018-04-11 12:20:47.800568156 +0200
+@@ -1,6 +1,10 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <dji.pilot.fpv.view.SimpleAttitudeView android:gravity="center_vertical" android:orientation="vertical" android:padding="@dimen/dp_15_in_sw320dp" android:layout_width="fill_parent" android:layout_height="wrap_content"
+   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:phantom="http://schemas.android.com/apk/res-auto">
++    <dji.publics.DJIUI.DJILinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
++        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FC s/n" android:alpha="0.6" phantom:attiTextFace="pirulen" />
++        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/fpv_flyc_sn" android:layout_width="@dimen/dp_240_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" phantom:attiTextFace="pirulen" />
++    </dji.publics.DJIUI.DJILinearLayout>
+     <dji.publics.DJIUI.DJILinearLayout android:orientation="horizontal" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content">
+         <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:id="@id/attitude_vps_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="VPS" android:alpha="0.6" phantom:attiTextFace="pirulen" />
+         <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/attitude_vps_value" android:layout_width="@dimen/dp_80_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" android:layout_toRightOf="@id/attitude_vps_title" phantom:attiTextFace="pirulen" />
+diff -Naur orig/res/layout/fpv_whole_attitude_view.xml mod/res/layout/fpv_whole_attitude_view.xml
+--- orig/res/layout/fpv_whole_attitude_view.xml	2018-04-11 12:06:13.137136570 +0200
++++ mod/res/layout/fpv_whole_attitude_view.xml	2018-04-11 12:21:45.216970837 +0200
+@@ -2,6 +2,9 @@
+ <dji.pilot.newfpv.view.WholeAttitudeView android:gravity="bottom" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="@dimen/fpv_attitude_ball_black_hover_width" android:minHeight="@dimen/fpv_attitude_black_hover_height"
+   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:phantom="http://schemas.android.com/apk/res-auto">
+     <include android:id="@id/v2_smlt_ly" android:visibility="gone" layout="@layout/new_simulator_ly_view" />
++    <RelativeLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_10_in_sw320dp" android:layout_above="@id/attitude_dist_height_ly">
++      <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_big_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/fpv_flyc_sn" android:layout_width="@dimen/dp_240_in_sw320dp" android:layout_height="wrap_content" android:text="N/A" android:maxLines="1" phantom:attiTextFace="pirulen" />
++    </RelativeLayout>
+     <RelativeLayout android:orientation="horizontal" android:id="@id/attitude_dist_height_ly" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_10_in_sw320dp" android:layout_above="@id/attitude_speed_vps_ly">
+         <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:id="@id/attitude_distance_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="D" android:layout_alignBaseline="@id/attitude_height_value" android:alpha="0.6" phantom:attiTextFace="pirulen" />
+         <dji.publics.DJIUI.DJIImageView android:id="@id/attitude_distance_desc_img" android:background="@drawable/dynamic_home_icon" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="@string/app_name" />
+diff -Naur orig/res/values/ids.xml mod/res/values/ids.xml
+--- orig/res/values/ids.xml	2018-04-11 12:06:20.145293936 +0200
++++ mod/res/values/ids.xml	2018-04-11 12:18:52.728016692 +0200
+@@ -3873,6 +3873,7 @@
+     <item type="id" name="fpv_flyc_yaw_endpoint_layout">false</item>
+     <item type="id" name="fpv_flyc_yaw_endpoint_range">false</item>
+     <item type="id" name="fpv_flyc_yaw_endpoint">false</item>
++    <item type="id" name="fpv_flyc_sn">false</item>
+     <item type="id" name="setting_ui_flyc_gear_hide_img">false</item>
+     <item type="id" name="setting_ui_flyc_gear_hide_desc">false</item>
+     <item type="id" name="setting_ui_flyc_homepoint_now">false</item>
+diff -Naur orig/res/values/public.xml mod/res/values/public.xml
+--- orig/res/values/public.xml	2018-04-11 12:06:20.401299689 +0200
++++ mod/res/values/public.xml	2018-04-11 12:18:02.451899498 +0200
+@@ -23637,6 +23637,7 @@
+     <public type="id" name="fpv_flyc_yaw_endpoint_layout" id="0x7f0c0f86" />
+     <public type="id" name="fpv_flyc_yaw_endpoint_range" id="0x7f0c0f87" />
+     <public type="id" name="fpv_flyc_yaw_endpoint" id="0x7f0c0f88" />
++    <public type="id" name="fpv_flyc_sn" id="0x7f0cffff" />
+     <public type="id" name="setting_ui_flyc_gear_hide_img" id="0x7f0c0f89" />
+     <public type="id" name="setting_ui_flyc_gear_hide_desc" id="0x7f0c0f8a" />
+     <public type="id" name="setting_ui_flyc_homepoint_now" id="0x7f0c0f8b" />
+diff -Naur orig/smali_classes4/dji/pilot/R$id.smali mod/smali_classes4/dji/pilot/R$id.smali
+--- orig/smali_classes4/dji/pilot/R$id.smali	2018-04-11 12:06:30.625529708 +0200
++++ mod/smali_classes4/dji/pilot/R$id.smali	2018-04-11 12:19:37.300186378 +0200
+@@ -3689,6 +3689,8 @@
+ 
+ .field public static final fpv_flyc_yaw_endpoint_range:I = 0x7f0c0f87
+ 
++.field public static final fpv_flyc_sn:I = 0x7f0cffff
++
+ .field public static final fpv_follow_focus_bar:I = 0x7f0c06c6
+ 
+ .field public static final fpv_fps:I = 0x7f0c0746
+diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali
+--- orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-11 12:06:31.641552593 +0200
++++ mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-11 12:29:44.914556660 +0200
+@@ -57,6 +57,8 @@
+ 
+ .field private f:Landroid/widget/TextView;
+ 
++.field private ff:Landroid/widget/TextView;
++
+ .field private g:Ldji/pilot/fpv/control/DJIGenSettingDataManager;
+ 
+ .field private h:I
+@@ -1570,6 +1572,19 @@
+     .line 464
+     :cond_0
+     :goto_0
++    invoke-static {}, Ldji/a/a/a;->a()Ldji/a/a/b;
++
++    move-result-object v0
++
++    invoke-interface {v0}, Ldji/a/a/b;->getSN()Ljava/lang/String;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->ff:Landroid/widget/TextView;
++
++    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++
++    :cond_6
+     return-void
+ 
+     .line 441
+@@ -2434,11 +2449,29 @@
+ 
+     iput-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->f:Landroid/widget/TextView;
+ 
++    const v0, 0x7f0cffff
++
++    invoke-virtual {p0, v0}, Ldji/pilot/fpv/view/SimpleAttitudeView;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/TextView;
++
++    iput-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->ff:Landroid/widget/TextView;
++
+     .line 120
+     iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->f:Landroid/widget/TextView;
+ 
+     new-instance v1, Ldji/pilot/fpv/view/SimpleAttitudeView$2;
+ 
++    invoke-direct {v1, p0}, Ldji/pilot/fpv/view/SimpleAttitudeView$2;-><init>(Ldji/pilot/fpv/view/SimpleAttitudeView;)V
++
++    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
++
++    iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->ff:Landroid/widget/TextView;
++
++    new-instance v1, Ldji/pilot/fpv/view/SimpleAttitudeView$2;
++
+     invoke-direct {v1, p0}, Ldji/pilot/fpv/view/SimpleAttitudeView$2;-><init>(Ldji/pilot/fpv/view/SimpleAttitudeView;)V
+ 
+     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
+diff -Naur orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali mod/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali
+--- orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali	2018-04-11 12:06:31.733554665 +0200
++++ mod/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali	2018-04-11 12:45:33.340193444 +0200
+@@ -71,6 +71,8 @@
+ 
+ .field private f:Landroid/widget/TextView;
+ 
++.field private ff:Landroid/widget/TextView;
++
+ .field private g:Landroid/widget/TextView;
+ 
+ .field private h:Landroid/widget/TextView;
+@@ -2197,6 +2199,19 @@
+     .line 600
+     :cond_3
+     :goto_1
++    invoke-static {}, Ldji/a/a/a;->a()Ldji/a/a/b;
++
++    move-result-object v0
++
++    invoke-interface {v0}, Ldji/a/a/b;->getSN()Ljava/lang/String;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ldji/pilot/newfpv/view/WholeAttitudeView;->ff:Landroid/widget/TextView;
++
++    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++
++    :cond_9
+     return-void
+ 
+     .line 577
+@@ -3275,6 +3290,16 @@
+ 
+     iput-object v0, p0, Ldji/pilot/newfpv/view/WholeAttitudeView;->h:Landroid/widget/TextView;
+ 
++    const v0, 0x7f0cffff
++
++    invoke-virtual {p0, v0}, Ldji/pilot/newfpv/view/WholeAttitudeView;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/TextView;
++
++    iput-object v0, p0, Ldji/pilot/newfpv/view/WholeAttitudeView;->ff:Landroid/widget/TextView;
++
+     .line 137
+     const v0, 0x7f0c080f
+ 
