@@ -1,0 +1,21 @@
+diff -Naur orig/smali/dji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType.smali mod/smali/dji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType.smali
+--- orig/smali/dji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType.smali	2018-04-15 18:46:40.232455100 +0200
++++ mod/smali/dji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType.smali	2018-04-15 22:53:31.585716500 +0200
+@@ -240,7 +240,7 @@
+ 
+     invoke-direct {v0, v1, v2, v3}, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;-><init>(Ljava/lang/String;II)V
+ 
+-    sput-object v0, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;->DJICameraTypeFC220:Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;
++    sput-object v0, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;->DJICameraTypeFC1102:Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;
+ 
+     .line 714
+     new-instance v0, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;
+@@ -410,7 +410,7 @@
+ 
+     invoke-direct {v0, v1, v2, v3}, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;-><init>(Ljava/lang/String;II)V
+ 
+-    sput-object v0, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;->DJICameraTypeFC1102:Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;
++    sput-object v0, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;->DJICameraTypeFC220:Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;
+ 
+     .line 773
+     new-instance v0, Ldji/midware/data/model/P3/DataCameraGetPushStateInfo$CameraType;
