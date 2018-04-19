@@ -1,7 +1,7 @@
 diff -Naur orig/res/layout/fpv_new_attitude_view.xml mod/res/layout/fpv_new_attitude_view.xml
 --- orig/res/layout/fpv_new_attitude_view.xml	2018-04-10 18:06:44.130226337 +0200
-+++ mod/res/layout/fpv_new_attitude_view.xml	2018-04-19 03:08:50.680340811 +0200
-@@ -2,19 +2,21 @@
++++ mod/res/layout/fpv_new_attitude_view.xml	2018-04-19 15:46:31.380474253 +0200
+@@ -2,19 +2,23 @@
  <dji.pilot.fpv.view.SimpleAttitudeView android:gravity="center_vertical" android:orientation="horizontal" android:padding="@dimen/dp_15_in_sw320dp" android:layout_width="fill_parent" android:layout_height="wrap_content"
    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:phantom="http://schemas.android.com/apk/res-auto">
      <dji.publics.DJIUI.DJILinearLayout android:orientation="vertical" android:id="@id/simple_attitude_ly" android:layout_width="wrap_content" android:layout_height="wrap_content">
@@ -26,6 +26,8 @@ diff -Naur orig/res/layout/fpv_new_attitude_view.xml mod/res/layout/fpv_new_atti
 -            <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/attitude_speed_value" android:layout_width="@dimen/dp_80_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" phantom:attiTextFace="pirulen" />
 +            <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2.0dip" android:text="V.S" android:alpha="0.6" phantom:attiTextFace="pirulen" />
 +            <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/attitude_v_speed_value" android:layout_width="@dimen/dp_80_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" phantom:attiTextFace="pirulen" />
++            <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2.0dip" android:text="RPM" android:alpha="0.6" phantom:attiTextFace="pirulen" />
++            <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/fpv_sport_attitude_rpm_tv" android:layout_width="@dimen/dp_80_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" phantom:attiTextFace="pirulen" />
          </dji.publics.DJIUI.DJILinearLayout>
      </dji.publics.DJIUI.DJILinearLayout>
  </dji.pilot.fpv.view.SimpleAttitudeView>
@@ -131,19 +133,27 @@ diff -Naur orig/smali/dji/midware/data/model/P3/DataWifi_gGetPushLog.smali mod/s
 +.end method
 diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali
 --- orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-10 18:07:04.959004443 +0200
-+++ mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-19 04:26:43.593746906 +0200
-@@ -61,6 +61,10 @@
++++ mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-19 16:00:57.504334066 +0200
+@@ -59,8 +59,18 @@
  
+ .field private f:Landroid/widget/ImageView;
+ 
++# H / horizonal speed
  .field private g:Landroid/widget/TextView;
  
++# Z / vertcal Speed
 +.field private gg:Landroid/widget/TextView;
 +
++# VPS height
 +.field private ggg:Landroid/widget/TextView;
++
++# RPM
++.field private gggg:Landroid/widget/TextView;
 +
  .field private h:Ldji/pilot/fpv/control/DJIGenSettingDataManager;
  
  .field private i:I
-@@ -73,6 +77,8 @@
+@@ -73,6 +83,8 @@
  
  .field private m:F
  
@@ -152,7 +162,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
  .field private n:F
  
  .field private o:F
-@@ -176,6 +182,8 @@
+@@ -176,6 +188,8 @@
      .line 73
      iput v2, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->m:F
  
@@ -161,7 +171,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
      .line 74
      iput v2, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->n:F
  
-@@ -425,6 +433,14 @@
+@@ -425,6 +439,18 @@
  
      invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
  
@@ -173,10 +183,14 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
 +
 +    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 +
++    iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->gggg:Landroid/widget/TextView;
++
++    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
++
      .line 164
      iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->f:Landroid/widget/ImageView;
  
-@@ -435,6 +451,8 @@
+@@ -435,6 +461,8 @@
      .line 166
      iput v4, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->m:F
  
@@ -185,62 +199,140 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
      .line 167
      iput v4, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->n:F
  
-@@ -1331,25 +1349,25 @@
+@@ -1329,9 +1357,9 @@
  
-     .line 410
-     .line 412
+     const-wide v4, 0x3ff3333333333333L    # 1.2
+ 
+-    .line 410
+-    .line 412
 -    const-string v0, "EFkcLhMsOBc2RCAhJTswCj5/OicD"
-+#    const-string v0, "EFkcLhMsOBc2RCAhJTswCj5/OicD"
- 
--    invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
-+#    invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
- 
--    move-result-object v0
-+#    move-result-object v0
- 
--    invoke-static {v0}, Ldji/sdksharedlib/a/a;->e(Ljava/lang/String;)Ljava/lang/Object;
-+#    invoke-static {v0}, Ldji/sdksharedlib/a/a;->e(Ljava/lang/String;)Ljava/lang/Object;
- 
--    move-result-object v0
-+#    move-result-object v0
- 
--    invoke-static {v0, v6}, Ldji/sdksharedlib/a/a;->a(Ljava/lang/Object;Z)Z
-+#    invoke-static {v0, v6}, Ldji/sdksharedlib/a/a;->a(Ljava/lang/Object;Z)Z
- 
--    move-result v0
-+#    move-result v0
- 
--    .line 413
--    if-eqz v0, :cond_0
-+#    .line 413
-+#    if-eqz v0, :cond_0
- 
-     .line 414
--    const-string v0, "DEY9MAYtNgowSQEnDjkxEBBEBCcTOysX"
++# Altitude
++    .line 414
 +    const-string v0, "GEY9KxMrPQE="
  
      invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
  
-@@ -1371,13 +1389,17 @@
+@@ -1341,15 +1369,74 @@
  
-     if-nez v1, :cond_1
+     move-result-object v0
  
+-    invoke-static {v0, v6}, Ldji/sdksharedlib/a/a;->a(Ljava/lang/Object;Z)Z
++    invoke-static {v0}, Ldji/sdksharedlib/a/a;->c(Ljava/lang/Object;)F
+ 
+     move-result v0
+ 
+-    .line 413
+-    if-eqz v0, :cond_0
++    .line 419
++    :goto_0
++    iget v1, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->m:F
+ 
+-    .line 414
+-    const-string v0, "DEY9MAYtNgowSQEnDjkxEBBEBCcTOysX"
++    cmpl-float v1, v1, v0
++
++# Altitude changed? Change altitude value
++    if-nez v1, :cond_1
++
 +    goto :cond_0
 +
-     .line 431
-     :goto_1
-     return-void
++    .line 431
++    :goto_1
++
++######
++## RPM
++
++invoke-static {}, Ldji/midware/data/model/P3/DataFlycGetPushPowerParam;->getInstance()Ldji/midware/data/model/P3/DataFlycGetPushPowerParam;
++
++move-result-object v0
++
++invoke-virtual {v0}, Ldji/midware/data/model/P3/DataFlycGetPushPowerParam;->getEscAverageSpeed()F
++
++move-result v0
++
++iget-object v1, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->gggg:Landroid/widget/TextView;
++
++const-string v2, "fBp9Jg=="
++
++invoke-static {v2}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
++
++move-result-object v2
++
++const/4 v5, 0x1
++
++new-array v3, v5, [Ljava/lang/Object;
++
++float-to-int v0, v0
++
++invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
++
++move-result-object v0
++
++const/4 v4, 0x0
++
++aput-object v0, v3, v4
++
++invoke-static {v2, v3}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
++
++move-result-object v0
++
++invoke-virtual {v1, v0}, Ldji/publics/DJIUI/DJITextView;->setText(Ljava/lang/CharSequence;)V
++
++
++
++    :goto_3
++    return-void
++
++    .line 416
++    :cond_0
++##########
++# UtrasonicHeight
++
++    const-string v0, "EFkcLhMsOBc2RCAhJTswCj5/OicD"
  
-     .line 416
-     :cond_0
+     invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
+ 
+@@ -1359,25 +1446,27 @@
+ 
+     move-result-object v0
+ 
+-    invoke-static {v0}, Ldji/sdksharedlib/a/a;->c(Ljava/lang/Object;)F
++    invoke-static {v0, v6}, Ldji/sdksharedlib/a/a;->a(Ljava/lang/Object;Z)Z
+ 
+     move-result v0
+ 
+-    .line 419
+-    :goto_0
+-    iget v1, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->m:F
++# is Ultrasonic used? -> :cond_7
++    if-nez v0, :cond_7
+ 
+-    cmpl-float v1, v1, v0
++# Ultrasonic not used, invalidating VPS value
+ 
+-    if-nez v1, :cond_1
++    const v1, 0x7f090537
+ 
+-    .line 431
+-    :goto_1
+-    return-void
++    iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->ggg:Landroid/widget/TextView;
+ 
+-    .line 416
+-    :cond_0
 -    const-string v0, "GEY9KxMrPQE="
++    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
++
++    goto :goto_1
++
++    :cond_7
 +    const-wide v4, 0x3ff3333333333333L    # 1.2
 +
 +    const-string v0, "DEY9MAYtNgowSQEnDjkxEBBEBCcTOysX"
  
      invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
  
-@@ -1391,11 +1413,17 @@
+@@ -1391,8 +1480,17 @@
  
      move-result v0
  
@@ -249,18 +341,17 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
 +
 +    cmpl-float v1, v1, v0
 +
++# Ultrasonic height changed? Change value
 +    if-nez v1, :cond_4
-+
-+    goto :goto_1
  
++    goto :goto_1
++
++##########
++## Handling Altitude
      .line 422
      :cond_1
--    iput v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->m:F
-+    iput v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->mm:F
- 
-     .line 423
-     float-to-double v2, v0
-@@ -1463,7 +1491,8 @@
+     iput v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->m:F
+@@ -1463,7 +1561,8 @@
  
      invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
  
@@ -270,13 +361,17 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
  
      .line 425
      :cond_3
-@@ -1491,6 +1520,101 @@
+@@ -1491,6 +1590,105 @@
      invoke-virtual {v1, v2}, Landroid/widget/TextView;->setTextColor(I)V
  
      goto :goto_2
 +
 +#####################
++# Update VPS / Ultrasonic value
 +:cond_4
++
++const-wide v4, 0x3ff3333333333333L    # 1.2
++
 +iput v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->mm:F
 +
 +float-to-double v2, v0
@@ -372,7 +467,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
  .end method
  
  .method private k()V
-@@ -1584,17 +1708,14 @@
+@@ -1584,17 +1782,14 @@
      .line 445
      iput v2, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->p:F
  
@@ -392,7 +487,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
      float-to-double v0, v0
  
      invoke-static {v0, v1}, Ljava/lang/Math;->sqrt(D)D
-@@ -1603,7 +1724,6 @@
+@@ -1603,7 +1798,6 @@
  
      double-to-float v0, v0
  
@@ -400,7 +495,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
      sget-object v1, Ljava/util/Locale;->US:Ljava/util/Locale;
  
      const-string v3, "fAR4JA=="
-@@ -1638,11 +1758,118 @@
+@@ -1638,11 +1832,118 @@
  
      move-result-object v0
  
@@ -520,7 +615,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
      .line 453
      cmpl-float v0, v2, v6
  
-@@ -2418,7 +2645,7 @@
+@@ -2418,7 +2719,7 @@
      iput-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->f:Landroid/widget/ImageView;
  
      .line 121
@@ -529,7 +624,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
  
      invoke-virtual {p0, v0}, Ldji/pilot/fpv/view/SimpleAttitudeView;->findViewById(I)Landroid/view/View;
  
-@@ -2428,11 +2655,47 @@
+@@ -2428,11 +2729,65 @@
  
      iput-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->g:Landroid/widget/TextView;
  
@@ -553,6 +648,16 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
 +
 +    iput-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->ggg:Landroid/widget/TextView;
 +
++    const v0, 0x7f0b07e8
++
++    invoke-virtual {p0, v0}, Ldji/pilot/fpv/view/SimpleAttitudeView;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/TextView;
++
++    iput-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->gggg:Landroid/widget/TextView;
++
      .line 122
      iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->g:Landroid/widget/TextView;
  
@@ -571,6 +676,14 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/s
 +    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
 +
 +    iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->ggg:Landroid/widget/TextView;
++
++    new-instance v1, Ldji/pilot/fpv/view/SimpleAttitudeView$2;
++
++    invoke-direct {v1, p0}, Ldji/pilot/fpv/view/SimpleAttitudeView$2;-><init>(Ldji/pilot/fpv/view/SimpleAttitudeView;)V
++
++    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
++
++    iget-object v0, p0, Ldji/pilot/fpv/view/SimpleAttitudeView;->gggg:Landroid/widget/TextView;
 +
 +    new-instance v1, Ldji/pilot/fpv/view/SimpleAttitudeView$2;
 +
