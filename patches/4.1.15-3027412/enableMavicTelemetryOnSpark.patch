@@ -1,6 +1,6 @@
 diff -Naur orig/res/layout/fpv_new_attitude_view.xml mod/res/layout/fpv_new_attitude_view.xml
---- orig/res/layout/fpv_new_attitude_view.xml	2018-04-10 18:06:44.130226337 +0200
-+++ mod/res/layout/fpv_new_attitude_view.xml	2018-04-19 15:46:31.380474253 +0200
+--- orig/res/layout/fpv_new_attitude_view.xml	2018-04-11 10:39:06.479265492 +0200
++++ mod/res/layout/fpv_new_attitude_view.xml	2018-04-19 20:54:45.536140498 +0200
 @@ -2,19 +2,23 @@
  <dji.pilot.fpv.view.SimpleAttitudeView android:gravity="center_vertical" android:orientation="horizontal" android:padding="@dimen/dp_15_in_sw320dp" android:layout_width="fill_parent" android:layout_height="wrap_content"
    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:phantom="http://schemas.android.com/apk/res-auto">
@@ -33,8 +33,8 @@ diff -Naur orig/res/layout/fpv_new_attitude_view.xml mod/res/layout/fpv_new_atti
  </dji.pilot.fpv.view.SimpleAttitudeView>
 \ Kein Zeilenumbruch am Dateiende.
 diff -Naur orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali
---- orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-10 18:07:04.959004443 +0200
-+++ mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-19 20:02:40.680380356 +0200
+--- orig/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-11 10:39:16.867952577 +0200
++++ mod/smali_classes5/dji/pilot/fpv/view/SimpleAttitudeView.smali	2018-04-19 20:57:34.238486397 +0200
 @@ -59,8 +59,18 @@
  
  .field private f:Landroid/widget/ImageView;
