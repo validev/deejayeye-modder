@@ -70,3 +70,6 @@ Removes popup "New Fly Safe data found... DJI GO 4 cannot be used normally witho
 
 removeCheckList
 Method generateCheckList returns an empty list in class FlyForbidCOntroller
+
+enableMavicTelemetryOnSpark
+shows horizontal and vertical speed on Spark
