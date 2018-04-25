@@ -1,0 +1,12 @@
+diff -Naur orig/smali_classes6/dji/setting/ui/flyc/identify/IdentfyViewGroup.smali mod/smali_classes6/dji/setting/ui/flyc/identify/IdentfyViewGroup.smali
+--- orig/smali_classes6/dji/setting/ui/flyc/identify/IdentfyViewGroup.smali	2018-04-11 12:06:33.353591166 +0200
++++ mod/smali_classes6/dji/setting/ui/flyc/identify/IdentfyViewGroup.smali	2018-04-25 16:54:36.021985788 +0200
+@@ -58,7 +58,7 @@
+ 
+     .line 43
+     :cond_0
+-    const/16 v0, 0x8
++    const/4 v0, 0x0
+ 
+     invoke-virtual {p0, v0}, Ldji/setting/ui/flyc/identify/IdentfyViewGroup;->setVisibility(I)V
+ 
