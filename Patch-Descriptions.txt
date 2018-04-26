@@ -73,6 +73,3 @@ Method generateCheckList returns an empty list in class FlyForbidCOntroller
 
 enableMavicTelemetryOnSpark
 shows horizontal and vertical speed on Spark
-
-enableIdentificationMenu
-Enables the identification menu in DJI GO 4
