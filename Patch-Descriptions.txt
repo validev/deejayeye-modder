@@ -73,3 +73,6 @@ Method generateCheckList returns an empty list in class FlyForbidCOntroller
 
 enableMavicTelemetryOnSpark
 shows horizontal and vertical speed on Spark
+
+increaseWaypointVelocity
+Increases the maximum horizontal velocity during waypoint missions. Must be accompanied by increasing the FC paramater g_config_waypoint_cfg_max_horiz_vel
