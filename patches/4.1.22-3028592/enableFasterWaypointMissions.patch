@@ -1,6 +1,6 @@
 diff -Naur orig/res/layout/gs_way_point_auto_fly_setting_view.xml mod/res/layout/gs_way_point_auto_fly_setting_view.xml
---- orig/res/layout/gs_way_point_auto_fly_setting_view.xml	2018-04-15 18:46:26.188369500 +0200
-+++ mod/res/layout/gs_way_point_auto_fly_setting_view.xml	2018-04-15 18:46:26.188369500 +0200
+--- orig/res/layout/gs_way_point_auto_fly_setting_view.xml	2018-06-01 20:16:03.043973600 +0200
++++ mod/res/layout/gs_way_point_auto_fly_setting_view.xml	2018-06-01 20:32:35.431918400 +0200
 @@ -29,7 +29,7 @@
          <View android:background="@color/gs_split_line_color" android:layout_width="fill_parent" android:layout_height="1.0dip" />
          <dji.publics.DJIUI.DJILinearLayout android:orientation="horizontal" android:id="@id/gs_way_point_seekbar_container" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="4.0">
@@ -11,8 +11,8 @@ diff -Naur orig/res/layout/gs_way_point_auto_fly_setting_view.xml mod/res/layout
          </dji.publics.DJIUI.DJILinearLayout>
      </dji.publics.DJIUI.DJILinearLayout>
 diff -Naur orig/res/layout/view_waypoint_speedcontrol.xml mod/res/layout/view_waypoint_speedcontrol.xml
---- orig/res/layout/view_waypoint_speedcontrol.xml	2018-04-15 18:45:36.719316200 +0200
-+++ mod/res/layout/view_waypoint_speedcontrol.xml	2018-04-15 18:45:36.719316200 +0200
+--- orig/res/layout/view_waypoint_speedcontrol.xml	2018-06-01 20:15:27.718245900 +0200
++++ mod/res/layout/view_waypoint_speedcontrol.xml	2018-06-01 20:32:35.447542400 +0200
 @@ -1,6 +1,6 @@
  <?xml version="1.0" encoding="utf-8"?>
  <merge android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
@@ -23,8 +23,8 @@ diff -Naur orig/res/layout/view_waypoint_speedcontrol.xml mod/res/layout/view_wa
  </merge>
 \ No newline at end of file
 diff -Naur orig/smali_classes5/dji/pilot/dji_groundstation/controller/d.smali mod/smali_classes5/dji/pilot/dji_groundstation/controller/d.smali
---- orig/smali_classes5/dji/pilot/dji_groundstation/controller/d.smali	2018-04-15 18:49:18.315917200 +0200
-+++ mod/smali_classes5/dji/pilot/dji_groundstation/controller/d.smali	2018-05-20 22:03:29.750358500 +0200
+--- orig/smali_classes5/dji/pilot/dji_groundstation/controller/d.smali	2018-06-01 20:17:46.787898600 +0200
++++ mod/smali_classes5/dji/pilot/dji_groundstation/controller/d.smali	2018-06-01 20:32:35.463166100 +0200
 @@ -2121,7 +2121,7 @@
  
      move-result-object v1
@@ -35,9 +35,14 @@ diff -Naur orig/smali_classes5/dji/pilot/dji_groundstation/controller/d.smali mo
      invoke-virtual {v1, v2}, Ldji/midware/data/model/P3/DataFlycUploadWayPointMissionMsg;->setCmdSpeed(F)Ldji/midware/data/model/P3/DataFlycUploadWayPointMissionMsg;
  
 diff -Naur orig/smali_classes5/dji/pilot/dji_groundstation/ui/views/WayPointSpeedControlView.smali mod/smali_classes5/dji/pilot/dji_groundstation/ui/views/WayPointSpeedControlView.smali
---- orig/smali_classes5/dji/pilot/dji_groundstation/ui/views/WayPointSpeedControlView.smali	2018-04-15 18:49:18.820583400 +0200
-+++ mod/smali_classes5/dji/pilot/dji_groundstation/ui/views/WayPointSpeedControlView.smali	2018-05-20 22:03:53.759166700 +0200
-@@ -118,7 +118,7 @@
+--- orig/smali_classes5/dji/pilot/dji_groundstation/ui/views/WayPointSpeedControlView.smali	2018-06-01 20:17:47.068973900 +0200
++++ mod/smali_classes5/dji/pilot/dji_groundstation/ui/views/WayPointSpeedControlView.smali	2018-06-01 20:36:12.462691600 +0200
+@@ -114,11 +114,11 @@
+ 
+     move-result v1
+ 
+-    const/high16 v2, 0x41200000    # 10.0f
++    const/high16 v2, 0x41500000    # 15.0f
  
      div-float/2addr v1, v2
  
