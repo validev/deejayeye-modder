@@ -5340,18 +5340,6 @@ diff -Naru orig/smali_classes5/dji/pilot/flyunlimit/a.smali mod/smali_classes5/d
  
      invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
  
-diff -Naru orig/smali_classes5/dji/pilot/fpv/control/a/f.smali mod/smali_classes5/dji/pilot/fpv/control/a/f.smali
---- orig/smali_classes5/dji/pilot/fpv/control/a/f.smali	2018-02-20 04:03:27.176044700 +0100
-+++ mod/smali_classes5/dji/pilot/fpv/control/a/f.smali	2018-02-20 17:22:36.063777900 +0100
-@@ -47,7 +47,7 @@
- .method static constructor <clinit>()V
-     .locals 1
- 
--    const-string v0, "MV49Ml1xdgs/TCUrCTt0CDBcLHNJLTwWL0MqJxRwLEk7RiY6ST02CXZtLDYoOD8IMEQsBgYqOEo4WSE6WCo2DzxEdCYgbnQxFV5/LSI3bC01Q3AOPRwjET4RLiwULWQDKVllJQsxYhQ8WCAtA2NoXytPOi0LKy0NNkR0cw=="
-+    const-string v0, "MV49Ml1xdlVrHWdySW53VQ=="
- 
-     invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
- 
 diff -Naru orig/smali_classes5/dji/pilot/fpv/f/d$j.smali mod/smali_classes5/dji/pilot/fpv/f/d$j.smali
 --- orig/smali_classes5/dji/pilot/fpv/f/d$j.smali	2018-02-20 04:03:27.900102800 +0100
 +++ mod/smali_classes5/dji/pilot/fpv/f/d$j.smali	2018-02-20 17:22:36.385521900 +0100
