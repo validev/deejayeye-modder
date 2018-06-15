@@ -1,6 +1,6 @@
 diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/a.smali mod/smali_classes5/dji/pilot/fpv/control/a/a.smali
 --- orig/smali_classes5/dji/pilot/fpv/control/a/a.smali	2018-06-14 12:09:19.536309089 +0200
-+++ mod/smali_classes5/dji/pilot/fpv/control/a/a.smali	2018-06-14 12:10:29.881056967 +0200
++++ mod/smali_classes5/dji/pilot/fpv/control/a/a.smali	2018-06-15 12:35:26.565953908 +0200
 @@ -153,6 +153,9 @@
      .locals 0
  
@@ -54,7 +54,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/a.smali mod/smali_classes
  
 diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/f$1.smali mod/smali_classes5/dji/pilot/fpv/control/a/f$1.smali
 --- orig/smali_classes5/dji/pilot/fpv/control/a/f$1.smali	2018-06-14 14:35:23.313177657 +0200
-+++ mod/smali_classes5/dji/pilot/fpv/control/a/f$1.smali	2018-06-14 14:35:07.468950431 +0200
++++ mod/smali_classes5/dji/pilot/fpv/control/a/f$1.smali	2018-06-15 12:35:26.565953908 +0200
 @@ -112,6 +112,8 @@
      .prologue
      const/4 v4, 0x0
@@ -66,7 +66,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/f$1.smali mod/smali_class
  
 diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/f$3.smali mod/smali_classes5/dji/pilot/fpv/control/a/f$3.smali
 --- orig/smali_classes5/dji/pilot/fpv/control/a/f$3.smali	2018-06-14 14:39:47.160965975 +0200
-+++ mod/smali_classes5/dji/pilot/fpv/control/a/f$3.smali	2018-06-14 14:44:31.857060207 +0200
++++ mod/smali_classes5/dji/pilot/fpv/control/a/f$3.smali	2018-06-15 12:35:26.565953908 +0200
 @@ -63,6 +63,41 @@
  
      const/4 v0, 0x1
@@ -111,7 +111,7 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/f$3.smali mod/smali_class
  
 diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/f.smali mod/smali_classes5/dji/pilot/fpv/control/a/f.smali
 --- orig/smali_classes5/dji/pilot/fpv/control/a/f.smali	2018-06-14 14:18:04.230293285 +0200
-+++ mod/smali_classes5/dji/pilot/fpv/control/a/f.smali	2018-06-14 14:17:36.833899110 +0200
++++ mod/smali_classes5/dji/pilot/fpv/control/a/f.smali	2018-06-15 12:35:26.569953960 +0200
 @@ -42,10 +42,19 @@
  
  .field private final r:I
@@ -503,9 +503,43 @@ diff -Naur orig/smali_classes5/dji/pilot/fpv/control/a/f.smali mod/smali_classes
 +
 +    return-object v0
 +.end method
+diff -Naur orig/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali mod/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali
+--- orig/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali	2018-04-11 12:06:31.681553494 +0200
++++ mod/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali	2018-06-15 12:48:24.320856640 +0200
+@@ -681,8 +681,22 @@
+ .method public onBackPressed()V
+     .locals 0
+ 
++    invoke-static {p0}, Ldji/pilot2/main/model/a;->exitApp(Landroid/content/Context;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_0
++
+     .prologue
+     .line 351
++    invoke-static {}, Log/patch/DTM;->close()V
++
++    invoke-static {}, Log/patch/URLHook;->close()V
++
++    invoke-static {}, Log/patch/UBXCFGTuner;->close()V
++
++    invoke-static {}, Log/patch/DatalinkTuner;->close()V
++
+     invoke-static {}, Ldji/pilot2/simulator/f;->a()V
+ 
+     .line 352
+@@ -698,6 +712,7 @@
+     invoke-virtual {p0}, Ldji/pilot/home/cs/activity/DJICsMainActivity;->onDestroy()V
+ 
+     .line 360
++    :cond_0
+     return-void
+ .end method
+ 
 diff -Naur orig/smali_classes5/og/patch/UBXCFGTuner.smali mod/smali_classes5/og/patch/UBXCFGTuner.smali
 --- orig/smali_classes5/og/patch/UBXCFGTuner.smali	1970-01-01 01:00:00.000000000 +0100
-+++ mod/smali_classes5/og/patch/UBXCFGTuner.smali	2018-06-14 09:58:45.000000000 +0200
++++ mod/smali_classes5/og/patch/UBXCFGTuner.smali	2018-06-15 12:35:26.569953960 +0200
 @@ -0,0 +1,1768 @@
 +.class public Log/patch/UBXCFGTuner;
 +.super Ljava/lang/Object;
@@ -2275,3 +2309,29 @@ diff -Naur orig/smali_classes5/og/patch/UBXCFGTuner.smali mod/smali_classes5/og/
 +    .line 247
 +    return-void
 +.end method
+diff -Naur orig/smali_classes6/dji/pilot2/main/activity/DJIMainFragmentActivity.smali mod/smali_classes6/dji/pilot2/main/activity/DJIMainFragmentActivity.smali
+--- orig/smali_classes6/dji/pilot2/main/activity/DJIMainFragmentActivity.smali	2018-04-11 12:06:32.785578367 +0200
++++ mod/smali_classes6/dji/pilot2/main/activity/DJIMainFragmentActivity.smali	2018-06-15 12:49:54.086121120 +0200
+@@ -992,8 +992,22 @@
+ .method public onBackPressed()V
+     .locals 2
+ 
++    invoke-static {p0}, Ldji/pilot2/main/model/a;->exitApp(Landroid/content/Context;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_0
++
+     .prologue
+     .line 396
++    invoke-static {}, Log/patch/DTM;->close()V
++
++    invoke-static {}, Log/patch/URLHook;->close()V
++
++    invoke-static {}, Log/patch/UBXCFGTuner;->close()V
++
++    invoke-static {}, Log/patch/DatalinkTuner;->close()V
++
+     invoke-virtual {p0}, Ldji/pilot2/main/activity/DJIMainFragmentActivity;->getFragmentManager()Landroid/app/FragmentManager;
+ 
+     move-result-object v0
