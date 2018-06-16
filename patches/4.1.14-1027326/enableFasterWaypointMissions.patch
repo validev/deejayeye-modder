@@ -6,7 +6,7 @@ diff -Naur orig/res/layout/gs_way_point_auto_fly_setting_view.xml mod/res/layout
          <dji.publics.DJIUI.DJILinearLayout android:orientation="horizontal" android:id="@id/gs_way_point_seekbar_container" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="4.0">
              <dji.publics.DJIUI.DJITextView android:textSize="@dimen/gs_normal_font_size" android:textColor="@color/white" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:layout_marginRight="@dimen/dp_5_in_sw320dp" android:text="@string/gs_way_point_auto_fly_setting_speed_label" />
 -            <SeekBar android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_seekbar" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="4.0dip" android:max="100" android:progress="50" android:progressDrawable="@drawable/gs_point_of_insterest_automatic_speed_pgb" android:minHeight="4.0dip" android:thumb="@drawable/battery_thumb" android:layout_weight="1.0" />
-+            <SeekBar android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_seekbar" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="4.0dip" android:max="150" android:progress="50" android:progressDrawable="@drawable/gs_point_of_insterest_automatic_speed_pgb" android:minHeight="4.0dip" android:thumb="@drawable/battery_thumb" android:layout_weight="1.0" />
++            <SeekBar android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_seekbar" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="4.0dip" android:max="250" android:progress="50" android:progressDrawable="@drawable/gs_point_of_insterest_automatic_speed_pgb" android:minHeight="4.0dip" android:thumb="@drawable/battery_thumb" android:layout_weight="1.0" />
              <dji.publics.DJIUI.DJITextView android:textSize="@dimen/dp_15_in_sw320dp" android:textColor="@color/setting_ui_btn_hover" android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:layout_marginRight="@dimen/dp_5_in_sw320dp" android:text="12m/s" />
          </dji.publics.DJIUI.DJILinearLayout>
      </dji.publics.DJIUI.DJILinearLayout>
@@ -18,7 +18,7 @@ diff -Naur orig/res/layout/view_waypoint_speedcontrol.xml mod/res/layout/view_wa
  <merge android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
    xmlns:android="http://schemas.android.com/apk/res/android">
 -    <SeekBar android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_seekbar" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="4.0dip" android:max="100" android:progress="50" android:progressDrawable="@drawable/gs_point_of_insterest_automatic_speed_pgb" android:minHeight="4.0dip" android:thumb="@drawable/battery_thumb" android:layout_weight="1.0" />
-+    <SeekBar android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_seekbar" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="4.0dip" android:max="150" android:progress="50" android:progressDrawable="@drawable/gs_point_of_insterest_automatic_speed_pgb" android:minHeight="4.0dip" android:thumb="@drawable/battery_thumb" android:layout_weight="1.0" />
++    <SeekBar android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_seekbar" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="4.0dip" android:max="250" android:progress="50" android:progressDrawable="@drawable/gs_point_of_insterest_automatic_speed_pgb" android:minHeight="4.0dip" android:thumb="@drawable/battery_thumb" android:layout_weight="1.0" />
      <dji.publics.DJIUI.DJITextView android:textSize="15.0dip" android:textColor="@color/white" android:layout_gravity="center_vertical" android:id="@id/gs_way_point_auto_fly_setting_speed_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:text="12m/s" />
  </merge>
 \ No newline at end of file
@@ -30,7 +30,7 @@ diff -Naur orig/smali_classes4/dji/pilot/dji_groundstation/controller/d.smali mo
      move-result-object v1
  
 -    const/high16 v2, 0x41200000    # 10.0f
-+    const/high16 v2, 0x41700000    # 15.0f
++    const/high16 v2, 0x41c80000    # 25.0f
  
      invoke-virtual {v1, v2}, Ldji/midware/data/model/P3/DataFlycUploadWayPointMissionMsg;->setCmdSpeed(F)Ldji/midware/data/model/P3/DataFlycUploadWayPointMissionMsg;
  
@@ -42,12 +42,12 @@ diff -Naur orig/smali_classes4/dji/pilot/dji_groundstation/ui/views/WayPointSpee
      move-result v1
  
 -    const/high16 v2, 0x41200000    # 10.0f
-+    const/high16 v2, 0x41700000    # 15.0f
++    const/high16 v2, 0x41c80000    # 25.0f
  
      div-float/2addr v1, v2
  
 -    const/high16 v2, 0x42c80000    # 100.0f
-+    const/high16 v2, 0x43160000    # 150.0f
++    const/high16 v2, 0x437a0000    # 250.0f
  
      mul-float/2addr v1, v2
  
