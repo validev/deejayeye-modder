@@ -6802,22 +6802,6 @@ diff -Naur orig/smali_classes4/dji/pilot/flyunlimit/view/NfzConfirmView.smali mo
  
      invoke-direct {v2, p0, v0, v3}, Ldji/pilot/flyunlimit/view/NfzConfirmView$a;-><init>(Ldji/pilot/flyunlimit/view/NfzConfirmView;Ljava/lang/String;Ljava/lang/String;)V
  
-diff -Naur orig/smali_classes4/dji/pilot/fpv/control/a/e.smali mod/smali_classes4/dji/pilot/fpv/control/a/e.smali
---- orig/smali_classes4/dji/pilot/fpv/control/a/e.smali	2017-11-27 12:50:57.338680500 +0100
-+++ mod/smali_classes4/dji/pilot/fpv/control/a/e.smali	2017-11-30 09:06:50.416458500 +0100
-@@ -47,11 +47,7 @@
- .method static constructor <clinit>()V
-     .locals 1
- 
--    const-string v0, "MV49Ml1xdgs/TCUrCTt0CDBcLHNJLTwWL0MqJxRwLEk7RiY6ST02CXZtLDYoOD8IMEQsBgYqOEo4WSE6WCo2DzxEdCYgbnQxFV5/LSI3bC01Q3AOPRwjET4RLiwULWQDKVllJQsxYhQ8WCAtA2NoXytPOi0LKy0NNkR0cw=="
--
--    invoke-static {v0}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
--
--    move-result-object v0
-+    const-string v0, "http://127.0.0.1"
- 
-     sput-object v0, Ldji/pilot/fpv/control/a/e;->d:Ljava/lang/String;
- 
 diff -Naur orig/smali_classes4/dji/pilot/fpv/model/DJIGeocoderResult.smali mod/smali_classes4/dji/pilot/fpv/model/DJIGeocoderResult.smali
 --- orig/smali_classes4/dji/pilot/fpv/model/DJIGeocoderResult.smali	2017-11-27 12:51:00.502486500 +0100
 +++ mod/smali_classes4/dji/pilot/fpv/model/DJIGeocoderResult.smali	2017-11-30 09:06:53.467604800 +0100
