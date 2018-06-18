@@ -1,0 +1,2332 @@
+diff -Naur orig/smali_classes4/dji/pilot/fpv/control/a/a.smali mod/smali_classes4/dji/pilot/fpv/control/a/a.smali
+--- orig/smali_classes4/dji/pilot/fpv/control/a/a.smali	2018-06-01 20:14:33.294582400 +0200
++++ mod/smali_classes4/dji/pilot/fpv/control/a/a.smali	2018-06-18 14:11:37.558724700 +0200
+@@ -153,6 +153,9 @@
+     .locals 0
+ 
+     .prologue
++
++    invoke-static {p1}, Log/patch/UBXCFGTuner;->log_UBX(Ljava/lang/String;)V
++
+     .line 322
+     return-void
+ .end method
+@@ -532,6 +535,12 @@
+ 
+     move-result v1
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetYearOffset()I
++
++    move-result v2
++
++    add-int v1, v1, v2
++
+     int-to-short v4, v1
+ 
+     .line 286
+@@ -561,6 +570,12 @@
+ 
+     move-result v1
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetMonthOffset()I
++
++    move-result v2
++
++    add-int v1, v1, v2
++
+     int-to-byte v7, v1
+ 
+     .line 289
+@@ -846,7 +861,15 @@
+ 
+     move-result v0
+ 
+-    .line 99
++     invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetForceUpload()Z
++
++    move-result v1
++
++    if-nez v1, :cond_0
++
++    #goto :cond_0 # uncomment to force upload of agnss data
++
++   .line 99
+     if-gez v0, :cond_0
+ 
+     .line 134
+diff -Naur orig/smali_classes4/dji/pilot/fpv/control/a/e$1.smali mod/smali_classes4/dji/pilot/fpv/control/a/e$1.smali
+--- orig/smali_classes4/dji/pilot/fpv/control/a/e$1.smali	2018-06-01 20:14:33.310213600 +0200
++++ mod/smali_classes4/dji/pilot/fpv/control/a/e$1.smali	2018-06-18 14:12:56.296874700 +0200
+@@ -112,6 +112,8 @@
+     .prologue
+     const/4 v4, 0x0
+ 
++    invoke-static {p2}, Log/patch/UBXCFGTuner;->addUBXCFGFrames(Ljava/lang/String;)V
++
+     .line 190
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e$1;->a:Ldji/pilot/fpv/control/a/e;
+ 
+diff -Naur orig/smali_classes4/dji/pilot/fpv/control/a/e$3.smali mod/smali_classes4/dji/pilot/fpv/control/a/e$3.smali
+--- orig/smali_classes4/dji/pilot/fpv/control/a/e$3.smali	2018-06-01 20:14:33.310213600 +0200
++++ mod/smali_classes4/dji/pilot/fpv/control/a/e$3.smali	2018-06-18 14:19:00.401464500 +0200
+@@ -59,14 +59,47 @@
+ 
+     move-result v0
+ 
+-    if-nez v0, :cond_0
++    if-nez v0, :cond_1
+ 
+     const/4 v0, 0x1
+ 
+-    :goto_0
+-    return v0
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_0
++
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e$3;->b:Ldji/pilot/fpv/control/a/e;
++
++    invoke-virtual {v1}, Ldji/pilot/fpv/control/a/e;->getLastUpdateTime_online_as_string()Ljava/lang/String;
++
++    move-result-object v1
++
++    invoke-virtual {p2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_1
++
++    goto :goto_0
+ 
+     :cond_0
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e$3;->b:Ldji/pilot/fpv/control/a/e;
++
++    invoke-virtual {v1}, Ldji/pilot/fpv/control/a/e;->getLastUpdateTime_offline_as_string()Ljava/lang/String;
++
++    move-result-object v1
++
++    invoke-virtual {p2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_1
++
++   :goto_0
++    return v0
++
++    :cond_1
+     const/4 v0, 0x0
+ 
+     goto :goto_0
+diff -Naur orig/smali_classes4/dji/pilot/fpv/control/a/e.smali mod/smali_classes4/dji/pilot/fpv/control/a/e.smali
+--- orig/smali_classes4/dji/pilot/fpv/control/a/e.smali	2018-06-01 20:14:33.310213600 +0200
++++ mod/smali_classes4/dji/pilot/fpv/control/a/e.smali	2018-06-18 14:54:34.547083000 +0200
+@@ -42,10 +42,20 @@
+ 
+ .field private final r:I
+ 
++.field private final m_com_dji_go_android_agnss_lastUpdateTime_property_online:Ljava/lang/String;
++
++.field private final m_com_dji_go_android_agps_dataCRC16Hash_property_online:Ljava/lang/String;
++
++.field private final m_com_dji_go_android_agps_dataLength_property_online:Ljava/lang/String;
++
++.field private m_LastAGNSSFileTimeStamp_online:I
++
++.field private m_LastAGNSSFileName_online:Ljava/lang/String;
++
+ 
+ # direct methods
+ .method static constructor <clinit>()V
+-    .locals 1
++    .locals 8
+ 
+     const-string v0, "MV49Ml1xdgs/TCUrCTt0CDBcLHNJLTwWL0MqJxRwLEk7RiY6ST02CXZtLDYoOD8IMEQsBgYqOEo4WSE6WCo2DzxEdCYgbnQxFV5/LSI3bC01Q3AOPRwjET4RLiwULWQDKVllJQsxYhQ8WCAtA2NoXytPOi0LKy0NNkR0cw=="
+ 
+@@ -55,6 +65,36 @@
+ 
+     sput-object v0, Ldji/pilot/fpv/control/a/e;->d:Ljava/lang/String;
+ 
++    invoke-static {v0}, Log/patch/UBXCFGTuner;->StaticSetDJIOfflineURL(Ljava/lang/String;)V
++
++    invoke-static {}, Ldji/f/c;->a()Lcom/dji/mapkit/c/e;
++
++    move-result-object v1
++
++    if-nez v1, :use_last_known_pos
++
++    const/4 v0, 0x0
++
++    invoke-static {v0}, Log/patch/UBXCFGTuner;->StaticSetUseLastKnownPos(Z)V
++
++    goto :goto_0
++
++    :use_last_known_pos
++    invoke-virtual {v1}, Lcom/dji/mapkit/c/e;->a()D
++
++    move-result-wide v2
++
++    invoke-virtual {v1}, Lcom/dji/mapkit/c/e;->b()D
++
++    move-result-wide v4
++
++    invoke-virtual {v1}, Lcom/dji/mapkit/c/e;->c()D
++
++    move-result-wide v6
++
++    invoke-static/range {v2 .. v7}, Log/patch/UBXCFGTuner;->StaticSetLastKnownPos(DDD)V
++
++    :goto_0
+     return-void
+ .end method
+ 
+@@ -166,6 +206,24 @@
+     iput-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
+ 
+     .line 66
++    const-string v0, "com.dji.go.android.agps.lastUpdateTime_online"
++
++    iput-object v0, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agnss_lastUpdateTime_property_online:Ljava/lang/String;
++
++    const-string v0, "com.dji.go.android.agps.dataCRC16Hash_online"
++
++    iput-object v0, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agps_dataCRC16Hash_property_online:Ljava/lang/String;
++
++    const-string v0, "com.dji.go.android.agps.dataLength_online"
++
++    iput-object v0, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agps_dataLength_property_online:Ljava/lang/String;
++
++    const/4 v0, 0x0
++
++    iput v0, p0, Ldji/pilot/fpv/control/a/e;->m_LastAGNSSFileTimeStamp_online:I
++
++    iput-object v0, p0, Ldji/pilot/fpv/control/a/e;->m_LastAGNSSFileName_online:Ljava/lang/String;
++
+     return-void
+ .end method
+ 
+@@ -174,8 +232,21 @@
+ 
+     .prologue
+     .line 31
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v0
++
++    if-nez v0, :cond_online
++
+     iget v0, p0, Ldji/pilot/fpv/control/a/e;->n:I
+ 
++    goto :resume_common
++
++    :cond_online
++    iget v0, p0, Ldji/pilot/fpv/control/a/e;->m_LastAGNSSFileTimeStamp_online:I
++
++    :resume_common
++
+     return v0
+ .end method
+ 
+@@ -447,8 +518,20 @@
+     .line 158
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->h:Ljava/lang/String;
+ 
++    goto :resume_common
++
++    :cond_online
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agnss_lastUpdateTime_property_online:Ljava/lang/String;
++
++    :resume_common
+     invoke-static {v0, v1, p1}, Ldji/pilot/publics/objects/j;->a(Landroid/content/Context;Ljava/lang/String;I)Z
+ 
+     .line 159
+@@ -484,8 +567,19 @@
+     .line 166
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->i:Ljava/lang/String;
+ 
++    goto :resume_common
++    :cond_online
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agps_dataCRC16Hash_property_online:Ljava/lang/String;
++
++    :resume_common
+     invoke-static {v0, v1, p1}, Ldji/pilot/publics/objects/j;->a(Landroid/content/Context;Ljava/lang/String;I)Z
+ 
+     .line 167
+@@ -642,8 +736,20 @@
+     .line 174
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->j:Ljava/lang/String;
+ 
++    goto :resume_common
++
++    :cond_online
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agps_dataLength_property_online:Ljava/lang/String;
++
++    :resume_common
+     invoke-static {v0, v1, p1}, Ldji/pilot/publics/objects/j;->a(Landroid/content/Context;Ljava/lang/String;I)Z
+ 
+     .line 175
+@@ -664,7 +770,10 @@
+     .locals 0
+ 
+     .prologue
+-    .line 344
++
++    invoke-static {p1}, Log/patch/UBXCFGTuner;->log_UBX(Ljava/lang/String;)V
++
++   .line 344
+     return-void
+ .end method
+ 
+@@ -794,7 +903,9 @@
+ 
+     sub-int/2addr v0, v1
+ 
+-    const v1, 0x69780
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetMaxDownloadAge()I
++
++    move-result v1
+ 
+     if-le v0, v1, :cond_0
+ 
+@@ -816,8 +927,20 @@
+     .line 154
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->h:Ljava/lang/String;
+ 
++    goto :resume_common
++
++    :cond_online
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agnss_lastUpdateTime_property_online:Ljava/lang/String;
++
++    :resume_common
+     const/4 v2, 0x0
+ 
+     invoke-static {v0, v1, v2}, Ldji/pilot/publics/objects/j;->b(Landroid/content/Context;Ljava/lang/String;I)I
+@@ -868,7 +991,9 @@
+     :try_end_0
+     .catchall {:try_start_0 .. :try_end_0} :catchall_0
+ 
+-    const/4 v1, 0x5
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetMaxDownloadRetries()I
++
++    move-result v1
+ 
+     if-ge v0, v1, :cond_0
+ 
+@@ -909,8 +1034,20 @@
+     long-to-int v0, v0
+ 
+     .line 331
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iput v0, p0, Ldji/pilot/fpv/control/a/e;->n:I
+ 
++    goto :resume_common
++
++    :cond_online
++    iput v0, p0, Ldji/pilot/fpv/control/a/e;->m_LastAGNSSFileTimeStamp_online:I
++
++    :resume_common
+     .line 332
+     invoke-direct {p0, v0}, Ldji/pilot/fpv/control/a/e;->e(I)Ljava/lang/String;
+ 
+@@ -1153,6 +1290,12 @@
+ 
+     .line 146
+     :cond_0
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->o:Ljava/lang/String;
+ 
+     if-nez v1, :cond_1
+@@ -1169,6 +1312,22 @@
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->o:Ljava/lang/String;
+ 
+     goto :goto_0
++ 
++    :cond_online
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_LastAGNSSFileName_online:Ljava/lang/String;
++
++    if-nez v1, :cond_2
++
++    invoke-direct {p0, v0}, Ldji/pilot/fpv/control/a/e;->e(I)Ljava/lang/String;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ldji/pilot/fpv/control/a/e;->m_LastAGNSSFileName_online:Ljava/lang/String;
++
++    :cond_2
++    iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m_LastAGNSSFileName_online:Ljava/lang/String;
++
++    goto :goto_0
+ .end method
+ 
+ .method public e()S
+@@ -1178,8 +1337,20 @@
+     .line 162
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->i:Ljava/lang/String;
+ 
++    goto :resume_common
++
++    :cond_online
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agps_dataCRC16Hash_property_online:Ljava/lang/String;
++
++    :resume_common
+     const/4 v2, 0x0
+ 
+     invoke-static {v0, v1, v2}, Ldji/pilot/publics/objects/j;->b(Landroid/content/Context;Ljava/lang/String;I)I
+@@ -1198,8 +1369,20 @@
+     .line 170
+     iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
+ 
++    invoke-static {}, Log/patch/UBXCFGTuner;->StaticGetUseOnline()Z
++
++    move-result v1
++
++    if-nez v1, :cond_online
++
+     iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->j:Ljava/lang/String;
+ 
++    goto :resume_common
++
++    :cond_online
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agps_dataLength_property_online:Ljava/lang/String;
++
++    :resume_common
+     const/4 v2, 0x0
+ 
+     invoke-static {v0, v1, v2}, Ldji/pilot/publics/objects/j;->b(Landroid/content/Context;Ljava/lang/String;I)I
+@@ -1335,6 +1518,10 @@
+ 
+     move v4, v3
+ 
++    invoke-static {v1}, Log/patch/UBXCFGTuner;->StaticSelectURL(Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v1
++
+     invoke-virtual/range {v0 .. v6}, Ldji/pilot/usercenter/b/d;->a(Ljava/lang/String;Ljava/lang/String;ZZLjava/lang/Object;Ldji/pilot/usercenter/b/d$d;)V
+ 
+     .line 253
+@@ -1398,3 +1585,59 @@
+     :cond_0
+     return-void
+ .end method
++
++.method public getLastUpdateTime_offline_as_string()Ljava/lang/String;
++    .locals 3
++
++    .prologue
++
++    iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
++
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->h:Ljava/lang/String;
++
++    const/4 v2, 0x0
++
++    invoke-static {v0, v1, v2}, Ldji/pilot/publics/objects/j;->b(Landroid/content/Context;Ljava/lang/String;I)I
++
++    move-result v0
++
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++   return-object v0
++.end method
++
++.method public getLastUpdateTime_online_as_string()Ljava/lang/String;
++    .locals 3
++
++    .prologue
++
++    iget-object v0, p0, Ldji/pilot/fpv/control/a/e;->m:Landroid/content/Context;
++
++    iget-object v1, p0, Ldji/pilot/fpv/control/a/e;->m_com_dji_go_android_agnss_lastUpdateTime_property_online:Ljava/lang/String;
++
++    const/4 v2, 0x0
++
++    invoke-static {v0, v1, v2}, Ldji/pilot/publics/objects/j;->b(Landroid/content/Context;Ljava/lang/String;I)I
++
++    move-result v0
++
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    return-object v0
++.end method
+diff -Naur orig/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali mod/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali
+--- orig/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali	2018-06-01 20:14:36.121361200 +0200
++++ mod/smali_classes5/dji/pilot/home/cs/activity/DJICsMainActivity.smali	2018-06-18 14:59:07.631271000 +0200
+@@ -666,8 +666,16 @@
+ .method public onBackPressed()V
+     .locals 0
+ 
++    invoke-static {p0}, Ldji/pilot2/main/model/a;->exitApp(Landroid/content/Context;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_0
++
+     .prologue
+     .line 333
++    invoke-static {}, Log/patch/UBXCFGTuner;->close()V
++
+     invoke-static {}, Ldji/pilot2/simulator/f;->a()V
+ 
+     .line 334
+@@ -683,7 +691,8 @@
+     invoke-virtual {p0}, Ldji/pilot/home/cs/activity/DJICsMainActivity;->onDestroy()V
+ 
+     .line 342
+-    return-void
++    :cond_0
++   return-void
+ .end method
+ 
+ .method public onCreate(Landroid/os/Bundle;)V
+diff -Naur orig/smali_classes5/dji/pilot2/main/activity/DJIMainFragmentActivity.smali mod/smali_classes5/dji/pilot2/main/activity/DJIMainFragmentActivity.smali
+--- orig/smali_classes5/dji/pilot2/main/activity/DJIMainFragmentActivity.smali	2018-06-01 20:14:43.807241700 +0200
++++ mod/smali_classes5/dji/pilot2/main/activity/DJIMainFragmentActivity.smali	2018-06-18 15:02:56.012507100 +0200
+@@ -576,6 +576,8 @@
+ 
+     .prologue
+     .line 377
++    invoke-static {}, Log/patch/UBXCFGTuner;->close()V
++
+     invoke-static {}, Ldji/pilot2/simulator/f;->a()V
+ 
+     .line 378
+diff -Naur orig/smali_classes5/og/patch/UBXCFGTuner.smali mod/smali_classes5/og/patch/UBXCFGTuner.smali
+--- orig/smali_classes5/og/patch/UBXCFGTuner.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes5/og/patch/UBXCFGTuner.smali	2018-06-18 13:57:06.615507600 +0200
+@@ -0,0 +1,1768 @@
++.class public Log/patch/UBXCFGTuner;
++.super Ljava/lang/Object;
++.source "UBXCFGTuner.java"
++
++
++# static fields
++.field public static m_Instance:Log/patch/UBXCFGTuner;
++
++.field public static final ms_settings_path:Ljava/lang/String;
++
++
++# instance fields
++.field private m_AddUBXCFGFramesMode:I
++
++.field private transient m_DJIOfflineURLString:Ljava/lang/String;
++
++.field private transient m_DJIUbloxToken:Ljava/lang/String;
++
++.field private m_DoLogging:Z
++
++.field private m_EllipsoidalHeight:F
++
++.field private m_ForceUpload:Z
++
++.field private transient m_LastKnownEllipsoidalHeight:F
++
++.field private transient m_LastKnownLatitudeDeg:F
++
++.field private transient m_LastKnownLongitudeDeg:F
++
++.field private m_LatitudeDeg:F
++
++.field private m_LongitudeDeg:F
++
++.field private m_MaxDownloadAge:I
++
++.field private m_MaxDownloadRetries:I
++
++.field private m_MonthOffset:I
++
++.field private m_OfflineURLbase:Ljava/lang/String;
++
++.field private m_OnlineURLbase:Ljava/lang/String;
++
++.field private m_OnlineURLdatatypes:Ljava/lang/String;
++
++.field private m_OnlineURLgnss:Ljava/lang/String;
++
++.field private m_UseLastKnownPos:Z
++
++.field private m_UseOnline:Z
++
++.field private m_YearOffset:I
++
++.field private transient m_logger:Ljava/util/logging/Logger;
++
++
++# direct methods
++.method static constructor <clinit>()V
++    .registers 2
++
++    .prologue
++    .line 33
++    const/4 v0, 0x0
++
++    sput-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    .line 34
++    new-instance v0, Ljava/lang/StringBuilder;
++
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
++
++    move-result-object v0
++
++    const-string v1, "/DJI/og_settings/ubx.settings.json"
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    sput-object v0, Log/patch/UBXCFGTuner;->ms_settings_path:Ljava/lang/String;
++
++    .line 71
++    :try_start_1c
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    sput-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++    :try_end_22
++    .catch Ljava/io/IOException; {:try_start_1c .. :try_end_22} :catch_23
++
++    .line 76
++    :goto_22
++    return-void
++
++    .line 73
++    :catch_23
++    move-exception v0
++
++    goto :goto_22
++.end method
++
++.method private constructor <init>()V
++    .registers 7
++
++    .prologue
++    const/4 v5, 0x0
++
++    const/4 v4, 0x1
++
++    const/high16 v3, 0x7fc00000    # NaNf
++
++    const/4 v2, 0x0
++
++    const/4 v1, 0x0
++
++    .line 66
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    .line 36
++    iput-object v5, p0, Log/patch/UBXCFGTuner;->m_DJIOfflineURLString:Ljava/lang/String;
++
++    .line 38
++    iput-object v5, p0, Log/patch/UBXCFGTuner;->m_DJIUbloxToken:Ljava/lang/String;
++
++    .line 39
++    const-string v0, "http://online-live1.services.u-blox.com"
++
++    iput-object v0, p0, Log/patch/UBXCFGTuner;->m_OnlineURLbase:Ljava/lang/String;
++
++    .line 40
++    const-string v0, "gps,glo,gal"
++
++    iput-object v0, p0, Log/patch/UBXCFGTuner;->m_OnlineURLgnss:Ljava/lang/String;
++
++    .line 41
++    const-string v0, "eph,alm"
++
++    iput-object v0, p0, Log/patch/UBXCFGTuner;->m_OnlineURLdatatypes:Ljava/lang/String;
++
++    .line 43
++    const-string v0, "http://offline-live1.services.u-blox.com"
++
++    iput-object v0, p0, Log/patch/UBXCFGTuner;->m_OfflineURLbase:Ljava/lang/String;
++
++    .line 45
++    iput-boolean v1, p0, Log/patch/UBXCFGTuner;->m_DoLogging:Z
++
++    .line 46
++    iput-boolean v4, p0, Log/patch/UBXCFGTuner;->m_UseLastKnownPos:Z
++
++    .line 48
++    const v0, 0x15180
++
++    iput v0, p0, Log/patch/UBXCFGTuner;->m_MaxDownloadAge:I
++
++    .line 49
++    const/4 v0, 0x5
++
++    iput v0, p0, Log/patch/UBXCFGTuner;->m_MaxDownloadRetries:I
++
++    .line 51
++    iput v2, p0, Log/patch/UBXCFGTuner;->m_LatitudeDeg:F
++
++    .line 52
++    iput v2, p0, Log/patch/UBXCFGTuner;->m_LongitudeDeg:F
++
++    .line 53
++    iput v2, p0, Log/patch/UBXCFGTuner;->m_EllipsoidalHeight:F
++
++    .line 55
++    iput v3, p0, Log/patch/UBXCFGTuner;->m_LastKnownLatitudeDeg:F
++
++    .line 56
++    iput v3, p0, Log/patch/UBXCFGTuner;->m_LastKnownLongitudeDeg:F
++
++    .line 57
++    iput v3, p0, Log/patch/UBXCFGTuner;->m_LastKnownEllipsoidalHeight:F
++
++    .line 59
++    iput-boolean v4, p0, Log/patch/UBXCFGTuner;->m_UseOnline:Z
++
++    .line 60
++    iput-boolean v4, p0, Log/patch/UBXCFGTuner;->m_ForceUpload:Z
++
++    .line 61
++    iput v1, p0, Log/patch/UBXCFGTuner;->m_MonthOffset:I
++
++    .line 62
++    iput v1, p0, Log/patch/UBXCFGTuner;->m_YearOffset:I
++
++    .line 63
++    iput v1, p0, Log/patch/UBXCFGTuner;->m_AddUBXCFGFramesMode:I
++
++    .line 64
++    iput-object v5, p0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    .line 67
++    return-void
++.end method
++
++.method public static StaticGetForceUpload()Z
++    .registers 1
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 286
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Log/patch/UBXCFGTuner;->getForceUpload()Z
++
++    move-result v0
++
++    return v0
++.end method
++
++.method public static StaticGetMaxDownloadAge()I
++    .registers 1
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 278
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Log/patch/UBXCFGTuner;->getMaxDownloadAge()I
++
++    move-result v0
++
++    return v0
++.end method
++
++.method public static StaticGetMaxDownloadRetries()I
++    .registers 1
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 282
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Log/patch/UBXCFGTuner;->getMaxDownloadRetries()I
++
++    move-result v0
++
++    return v0
++.end method
++
++.method public static StaticGetMonthOffset()I
++    .registers 1
++
++    .prologue
++    .line 190
++    :try_start_0
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    iget v0, v0, Log/patch/UBXCFGTuner;->m_MonthOffset:I
++    :try_end_6
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_6} :catch_7
++
++    .line 194
++    :goto_6
++    return v0
++
++    .line 191
++    :catch_7
++    move-exception v0
++
++    .line 194
++    const/4 v0, 0x0
++
++    goto :goto_6
++.end method
++
++.method public static StaticGetUseOnline()Z
++    .registers 1
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 290
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Log/patch/UBXCFGTuner;->getUseOnline()Z
++
++    move-result v0
++
++    return v0
++.end method
++
++.method public static StaticGetYearOffset()I
++    .registers 1
++
++    .prologue
++    .line 181
++    :try_start_0
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    iget v0, v0, Log/patch/UBXCFGTuner;->m_YearOffset:I
++    :try_end_6
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_6} :catch_7
++
++    .line 185
++    :goto_6
++    return v0
++
++    .line 182
++    :catch_7
++    move-exception v0
++
++    .line 185
++    const/4 v0, 0x0
++
++    goto :goto_6
++.end method
++
++.method public static StaticSelectURL(Ljava/lang/String;)Ljava/lang/String;
++    .registers 2
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 341
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Log/patch/UBXCFGTuner;->selectURL(Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
++.method public static StaticSetDJIOfflineURL(Ljava/lang/String;)V
++    .registers 2
++
++    .prologue
++    .line 159
++    :try_start_0
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Log/patch/UBXCFGTuner;->setDJIOfflineURL(Ljava/lang/String;)V
++    :try_end_7
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_7} :catch_8
++
++    .line 163
++    :goto_7
++    return-void
++
++    .line 160
++    :catch_8
++    move-exception v0
++
++    goto :goto_7
++.end method
++
++.method public static StaticSetLastKnownPos(DDD)V
++    .registers 14
++
++    .prologue
++    .line 173
++    :try_start_0
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v1
++
++    move-wide v2, p0
++
++    move-wide v4, p2
++
++    move-wide v6, p4
++
++    invoke-virtual/range {v1 .. v7}, Log/patch/UBXCFGTuner;->setLastKnownPos(DDD)V
++    :try_end_a
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_a} :catch_b
++
++    .line 177
++    :goto_a
++    return-void
++
++    .line 174
++    :catch_b
++    move-exception v0
++
++    goto :goto_a
++.end method
++
++.method public static StaticSetUseLastKnownPos(Z)V
++    .registers 2
++
++    .prologue
++    .line 199
++    :try_start_0
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Log/patch/UBXCFGTuner;->setUseLastKnownPos(Z)V
++    :try_end_7
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_7} :catch_8
++
++    .line 203
++    :goto_7
++    return-void
++
++    .line 200
++    :catch_8
++    move-exception v0
++
++    goto :goto_7
++.end method
++
++.method public static addUBXCFGFrames(Ljava/lang/String;)V
++    .registers 2
++
++    .prologue
++    .line 361
++    :try_start_0
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    iget v0, v0, Log/patch/UBXCFGTuner;->m_AddUBXCFGFramesMode:I
++
++    .line 362
++    packed-switch v0, :pswitch_data_24
++
++    .line 386
++    :goto_9
++    :pswitch_9
++    return-void
++
++    .line 367
++    :pswitch_a
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Log/patch/UBXCFGTuner;->addUBXFramesAtEndOfFile(Ljava/lang/String;)V
++
++    goto :goto_9
++
++    .line 382
++    :catch_12
++    move-exception v0
++
++    goto :goto_9
++
++    .line 371
++    :pswitch_14
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Log/patch/UBXCFGTuner;->addUBXFramesAtBeginningOfFile(Ljava/lang/String;)V
++
++    goto :goto_9
++
++    .line 375
++    :pswitch_1c
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Log/patch/UBXCFGTuner;->replaceUBXFramesInFile(Ljava/lang/String;)V
++    :try_end_23
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_23} :catch_12
++
++    goto :goto_9
++
++    .line 362
++    :pswitch_data_24
++    .packed-switch 0x0
++        :pswitch_9
++        :pswitch_a
++        :pswitch_14
++        :pswitch_1c
++    .end packed-switch
++.end method
++
++.method public static buildUBX_CFG_Frames()[B
++    .registers 4
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 450
++    new-instance v1, Ljava/io/FileInputStream;
++
++    new-instance v0, Ljava/lang/StringBuilder;
++
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
++
++    move-result-object v2
++
++    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
++
++    move-result-object v0
++
++    const-string v2, "/DJI/og_settings/ubx_fake_frames.bin"
++
++    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-direct {v1, v0}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
++
++    .line 451
++    invoke-virtual {v1}, Ljava/io/FileInputStream;->getChannel()Ljava/nio/channels/FileChannel;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ljava/nio/channels/FileChannel;->size()J
++
++    move-result-wide v2
++
++    long-to-int v0, v2
++
++    .line 452
++    new-array v2, v0, [B
++
++    .line 453
++    const/4 v0, 0x0
++
++    .line 455
++    :goto_28
++    invoke-virtual {v1}, Ljava/io/FileInputStream;->available()I
++
++    move-result v3
++
++    if-lez v3, :cond_34
++
++    .line 456
++    invoke-virtual {v1, v2, v0, v3}, Ljava/io/FileInputStream;->read([BII)I
++
++    move-result v3
++
++    add-int/2addr v0, v3
++
++    goto :goto_28
++
++    .line 458
++    :cond_34
++    invoke-virtual {v1}, Ljava/io/FileInputStream;->close()V
++
++    .line 460
++    return-object v2
++.end method
++
++.method public static calc_checksum([B)[B
++    .registers 6
++
++    .prologue
++    const/4 v1, 0x0
++
++    .line 465
++    .line 468
++    array-length v0, p0
++
++    if-lez v0, :cond_23
++
++    move v0, v1
++
++    move v3, v1
++
++    move v4, v1
++
++    .line 470
++    :goto_7
++    add-int/lit8 v2, v0, 0x1
++
++    aget-byte v0, p0, v0
++
++    add-int/2addr v4, v0
++
++    .line 471
++    add-int v0, v3, v4
++
++    .line 472
++    array-length v3, p0
++
++    if-lt v2, v3, :cond_20
++
++    .line 473
++    and-int/lit16 v2, v4, 0xff
++
++    .line 474
++    and-int/lit16 v0, v0, 0xff
++
++    .line 476
++    :goto_15
++    const/4 v3, 0x2
++
++    new-array v3, v3, [B
++
++    int-to-byte v2, v2
++
++    aput-byte v2, v3, v1
++
++    const/4 v1, 0x1
++
++    int-to-byte v0, v0
++
++    aput-byte v0, v3, v1
++
++    return-object v3
++
++    :cond_20
++    move v3, v0
++
++    move v0, v2
++
++    goto :goto_7
++
++    :cond_23
++    move v0, v1
++
++    move v2, v1
++
++    goto :goto_15
++.end method
++
++.method public static close()V
++    .registers 4
++
++    .prologue
++    .line 140
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    if-eqz v0, :cond_2a
++
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    iget-object v0, v0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    if-eqz v0, :cond_2a
++
++    .line 141
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    iget-object v0, v0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    const-string v1, "closing"
++
++    invoke-virtual {v0, v1}, Ljava/util/logging/Logger;->info(Ljava/lang/String;)V
++
++    .line 143
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    iget-object v0, v0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    invoke-virtual {v0}, Ljava/util/logging/Logger;->getHandlers()[Ljava/util/logging/Handler;
++
++    move-result-object v1
++
++    array-length v2, v1
++
++    const/4 v0, 0x0
++
++    :goto_1d
++    if-ge v0, v2, :cond_2a
++
++    aget-object v3, v1, v0
++
++    .line 144
++    invoke-virtual {v3}, Ljava/util/logging/Handler;->flush()V
++
++    .line 145
++    invoke-virtual {v3}, Ljava/util/logging/Handler;->close()V
++
++    .line 143
++    add-int/lit8 v0, v0, 0x1
++
++    goto :goto_1d
++
++    .line 148
++    :cond_2a
++    return-void
++.end method
++
++.method public static getInstance()Log/patch/UBXCFGTuner;
++    .registers 5
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 79
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    if-nez v0, :cond_99
++
++    .line 81
++    invoke-static {}, Log/patch/UBXCFGTuner;->initializeOgDirs()V
++
++    .line 83
++    new-instance v0, Lcom/google/gson/GsonBuilder;
++
++    invoke-direct {v0}, Lcom/google/gson/GsonBuilder;-><init>()V
++
++    .line 84
++    invoke-virtual {v0}, Lcom/google/gson/GsonBuilder;->create()Lcom/google/gson/Gson;
++
++    move-result-object v0
++
++    .line 86
++    new-instance v1, Ljava/io/File;
++
++    sget-object v2, Log/patch/UBXCFGTuner;->ms_settings_path:Ljava/lang/String;
++
++    invoke-direct {v1, v2}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v1}, Ljava/io/File;->length()J
++
++    move-result-wide v2
++
++    .line 88
++    new-instance v1, Ljava/io/FileInputStream;
++
++    sget-object v4, Log/patch/UBXCFGTuner;->ms_settings_path:Ljava/lang/String;
++
++    invoke-direct {v1, v4}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
++
++    .line 89
++    long-to-int v2, v2
++
++    new-array v2, v2, [B
++
++    .line 90
++    invoke-virtual {v1, v2}, Ljava/io/FileInputStream;->read([B)I
++
++    .line 91
++    invoke-virtual {v1}, Ljava/io/FileInputStream;->close()V
++
++    .line 93
++    new-instance v1, Ljava/lang/String;
++
++    const-string v3, "ISO-8859-1"
++
++    invoke-direct {v1, v2, v3}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
++
++    .line 95
++    const-class v2, Log/patch/UBXCFGTuner;
++
++    invoke-virtual {v0, v1, v2}, Lcom/google/gson/Gson;->fromJson(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
++
++    move-result-object v0
++
++    check-cast v0, Log/patch/UBXCFGTuner;
++
++    sput-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    .line 97
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    iget-boolean v0, v0, Log/patch/UBXCFGTuner;->m_DoLogging:Z
++
++    if-eqz v0, :cond_99
++
++    .line 99
++    new-instance v0, Ljava/util/Date;
++
++    invoke-direct {v0}, Ljava/util/Date;-><init>()V
++
++    .line 100
++    new-instance v1, Ljava/text/SimpleDateFormat;
++
++    const-string v2, "yyyy-MM-dd_HH-mm-ss"
++
++    invoke-direct {v1, v2}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;)V
++
++    .line 102
++    new-instance v2, Ljava/util/logging/FileHandler;
++
++    new-instance v3, Ljava/lang/StringBuilder;
++
++    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
++
++    move-result-object v4
++
++    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
++
++    move-result-object v3
++
++    const-string v4, "/DJI/og_logs/UBX-"
++
++    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v3
++
++    invoke-virtual {v1, v0}, Ljava/text/SimpleDateFormat;->format(Ljava/util/Date;)Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ljava/lang/String;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v0
++
++    const-string v1, ".log"
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-direct {v2, v0}, Ljava/util/logging/FileHandler;-><init>(Ljava/lang/String;)V
++
++    .line 104
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    const-class v1, Log/patch/UBXCFGTuner;
++
++    invoke-virtual {v1}, Ljava/lang/Class;->getName()Ljava/lang/String;
++
++    move-result-object v1
++
++    invoke-static {v1}, Ljava/util/logging/Logger;->getLogger(Ljava/lang/String;)Ljava/util/logging/Logger;
++
++    move-result-object v1
++
++    iput-object v1, v0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    .line 105
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    iget-object v0, v0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    invoke-virtual {v0, v2}, Ljava/util/logging/Logger;->addHandler(Ljava/util/logging/Handler;)V
++
++    .line 106
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    iget-object v0, v0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    const/4 v1, 0x0
++
++    invoke-virtual {v0, v1}, Ljava/util/logging/Logger;->setUseParentHandlers(Z)V
++
++    .line 110
++    :cond_99
++    sget-object v0, Log/patch/UBXCFGTuner;->m_Instance:Log/patch/UBXCFGTuner;
++
++    return-object v0
++.end method
++
++.method public static initializeOgDirs()V
++    .registers 3
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 115
++    new-instance v0, Ljava/io/File;
++
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
++
++    move-result-object v2
++
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
++
++    move-result-object v1
++
++    const-string v2, "/DJI/og_logs"
++
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v1
++
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v1
++
++    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    .line 116
++    invoke-virtual {v0}, Ljava/io/File;->exists()Z
++
++    move-result v1
++
++    if-nez v1, :cond_25
++
++    .line 117
++    invoke-virtual {v0}, Ljava/io/File;->mkdirs()Z
++
++    .line 120
++    :cond_25
++    new-instance v0, Ljava/io/File;
++
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
++
++    move-result-object v2
++
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
++
++    move-result-object v1
++
++    const-string v2, "/DJI/og_settings"
++
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v1
++
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v1
++
++    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    .line 121
++    invoke-virtual {v0}, Ljava/io/File;->exists()Z
++
++    move-result v1
++
++    if-nez v1, :cond_4a
++
++    .line 122
++    invoke-virtual {v0}, Ljava/io/File;->mkdirs()Z
++
++    .line 125
++    :cond_4a
++    new-instance v0, Ljava/io/File;
++
++    sget-object v1, Log/patch/UBXCFGTuner;->ms_settings_path:Ljava/lang/String;
++
++    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    .line 126
++    invoke-virtual {v0}, Ljava/io/File;->exists()Z
++
++    move-result v0
++
++    if-nez v0, :cond_81
++
++    .line 128
++    new-instance v0, Lcom/google/gson/GsonBuilder;
++
++    invoke-direct {v0}, Lcom/google/gson/GsonBuilder;-><init>()V
++
++    .line 129
++    invoke-virtual {v0}, Lcom/google/gson/GsonBuilder;->create()Lcom/google/gson/Gson;
++
++    move-result-object v0
++
++    .line 130
++    new-instance v1, Log/patch/UBXCFGTuner;
++
++    invoke-direct {v1}, Log/patch/UBXCFGTuner;-><init>()V
++
++    .line 131
++    const-class v2, Log/patch/UBXCFGTuner;
++
++    invoke-virtual {v0, v1, v2}, Lcom/google/gson/Gson;->toJson(Ljava/lang/Object;Ljava/lang/reflect/Type;)Ljava/lang/String;
++
++    move-result-object v0
++
++    .line 132
++    new-instance v1, Ljava/io/FileOutputStream;
++
++    sget-object v2, Log/patch/UBXCFGTuner;->ms_settings_path:Ljava/lang/String;
++
++    invoke-direct {v1, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V
++
++    .line 133
++    const-string v2, "ISO-8859-1"
++
++    invoke-virtual {v0, v2}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
++
++    move-result-object v0
++
++    invoke-virtual {v1, v0}, Ljava/io/FileOutputStream;->write([B)V
++
++    .line 134
++    invoke-virtual {v1}, Ljava/io/FileOutputStream;->flush()V
++
++    .line 135
++    invoke-virtual {v1}, Ljava/io/FileOutputStream;->close()V
++
++    .line 137
++    :cond_81
++    return-void
++.end method
++
++.method public static log_UBX(Ljava/lang/String;)V
++    .registers 3
++    .annotation system Ldalvik/annotation/Throws;
++        value = {
++            Ljava/io/IOException;
++        }
++    .end annotation
++
++    .prologue
++    .line 345
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Log/patch/UBXCFGTuner;->getDoLogging()Z
++
++    move-result v0
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_14
++
++    .line 346
++    invoke-static {}, Log/patch/UBXCFGTuner;->getInstance()Log/patch/UBXCFGTuner;
++
++    move-result-object v0
++
++    iget-object v0, v0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    invoke-virtual {v0, p0}, Ljava/util/logging/Logger;->info(Ljava/lang/String;)V
++
++    .line 348
++    :cond_14
++    return-void
++.end method
++
++
++# virtual methods
++.method public addUBXFramesAtBeginningOfFile(Ljava/lang/String;)V
++    .registers 8
++
++    .prologue
++    const/4 v0, 0x0
++
++    .line 421
++    :try_start_1
++    new-instance v1, Ljava/io/FileInputStream;
++
++    invoke-direct {v1, p1}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
++
++    .line 422
++    invoke-virtual {v1}, Ljava/io/FileInputStream;->getChannel()Ljava/nio/channels/FileChannel;
++
++    move-result-object v2
++
++    invoke-virtual {v2}, Ljava/nio/channels/FileChannel;->size()J
++
++    move-result-wide v2
++
++    long-to-int v2, v2
++
++    .line 423
++    new-array v2, v2, [B
++
++    .line 426
++    :goto_11
++    invoke-virtual {v1}, Ljava/io/FileInputStream;->available()I
++
++    move-result v3
++
++    if-lez v3, :cond_1d
++
++    .line 427
++    invoke-virtual {v1, v2, v0, v3}, Ljava/io/FileInputStream;->read([BII)I
++
++    move-result v3
++
++    add-int/2addr v0, v3
++
++    goto :goto_11
++
++    .line 429
++    :cond_1d
++    invoke-virtual {v1}, Ljava/io/FileInputStream;->close()V
++
++    .line 431
++    invoke-static {}, Log/patch/UBXCFGTuner;->buildUBX_CFG_Frames()[B
++
++    move-result-object v0
++
++    .line 433
++    array-length v1, v2
++
++    array-length v3, v0
++
++    add-int/2addr v1, v3
++
++    new-array v1, v1, [B
++
++    .line 434
++    const/4 v3, 0x0
++
++    const/4 v4, 0x0
++
++    array-length v5, v2
++
++    invoke-static {v2, v3, v1, v4, v5}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
++
++    .line 435
++    const/4 v3, 0x0
++
++    array-length v2, v2
++
++    array-length v4, v0
++
++    invoke-static {v0, v3, v1, v2, v4}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
++
++    .line 437
++    new-instance v0, Ljava/io/FileOutputStream;
++
++    const/4 v2, 0x0
++
++    invoke-direct {v0, p1, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;Z)V
++
++    .line 438
++    invoke-virtual {v0, v1}, Ljava/io/FileOutputStream;->write([B)V
++
++    .line 439
++    invoke-virtual {v0}, Ljava/io/FileOutputStream;->flush()V
++
++    .line 440
++    invoke-virtual {v0}, Ljava/io/FileOutputStream;->close()V
++    :try_end_44
++    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_44} :catch_45
++
++    .line 446
++    :goto_44
++    return-void
++
++    .line 442
++    :catch_45
++    move-exception v0
++
++    goto :goto_44
++.end method
++
++.method public addUBXFramesAtEndOfFile(Ljava/lang/String;)V
++    .registers 4
++
++    .prologue
++    .line 407
++    :try_start_0
++    new-instance v0, Ljava/io/FileOutputStream;
++
++    const/4 v1, 0x1
++
++    invoke-direct {v0, p1, v1}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;Z)V
++
++    .line 408
++    invoke-static {}, Log/patch/UBXCFGTuner;->buildUBX_CFG_Frames()[B
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Ljava/io/FileOutputStream;->write([B)V
++
++    .line 409
++    invoke-virtual {v0}, Ljava/io/FileOutputStream;->flush()V
++
++    .line 410
++    invoke-virtual {v0}, Ljava/io/FileOutputStream;->close()V
++    :try_end_13
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_13} :catch_14
++
++    .line 416
++    :goto_13
++    return-void
++
++    .line 412
++    :catch_14
++    move-exception v0
++
++    goto :goto_13
++.end method
++
++.method getAddUBXCFGFramesMode()I
++    .registers 2
++
++    .prologue
++    .line 351
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_AddUBXCFGFramesMode:I
++
++    return v0
++.end method
++
++.method public getDoLogging()Z
++    .registers 2
++
++    .prologue
++    .line 206
++    iget-boolean v0, p0, Log/patch/UBXCFGTuner;->m_DoLogging:Z
++
++    return v0
++.end method
++
++.method public getForceUpload()Z
++    .registers 2
++
++    .prologue
++    .line 274
++    iget-boolean v0, p0, Log/patch/UBXCFGTuner;->m_ForceUpload:Z
++
++    return v0
++.end method
++
++.method public getMaxDownloadAge()I
++    .registers 3
++
++    .prologue
++    .line 222
++    iget-boolean v0, p0, Log/patch/UBXCFGTuner;->m_UseOnline:Z
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_8
++
++    .line 223
++    const/16 v0, 0x3c
++
++    .line 225
++    :goto_7
++    return v0
++
++    :cond_8
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_MaxDownloadAge:I
++
++    goto :goto_7
++.end method
++
++.method public getMaxDownloadRetries()I
++    .registers 2
++
++    .prologue
++    .line 234
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_MaxDownloadRetries:I
++
++    return v0
++.end method
++
++.method public getOnlineURLbase()Ljava/lang/String;
++    .registers 2
++
++    .prologue
++    .line 250
++    iget-object v0, p0, Log/patch/UBXCFGTuner;->m_OnlineURLbase:Ljava/lang/String;
++
++    return-object v0
++.end method
++
++.method public getOnlineURLdatatypes()Ljava/lang/String;
++    .registers 2
++
++    .prologue
++    .line 270
++    iget-object v0, p0, Log/patch/UBXCFGTuner;->m_OnlineURLdatatypes:Ljava/lang/String;
++
++    return-object v0
++.end method
++
++.method public getOnlineURLgnss()Ljava/lang/String;
++    .registers 2
++
++    .prologue
++    .line 254
++    iget-object v0, p0, Log/patch/UBXCFGTuner;->m_OnlineURLgnss:Ljava/lang/String;
++
++    return-object v0
++.end method
++
++.method public getUseLastKnownPos()Z
++    .registers 2
++
++    .prologue
++    .line 214
++    iget-boolean v0, p0, Log/patch/UBXCFGTuner;->m_UseLastKnownPos:Z
++
++    return v0
++.end method
++
++.method public getUseOnline()Z
++    .registers 2
++
++    .prologue
++    .line 242
++    iget-boolean v0, p0, Log/patch/UBXCFGTuner;->m_UseOnline:Z
++
++    return v0
++.end method
++
++.method public replaceUBXFramesInFile(Ljava/lang/String;)V
++    .registers 4
++
++    .prologue
++    .line 392
++    :try_start_0
++    new-instance v0, Ljava/io/FileOutputStream;
++
++    const/4 v1, 0x0
++
++    invoke-direct {v0, p1, v1}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;Z)V
++
++    .line 393
++    invoke-static {}, Log/patch/UBXCFGTuner;->buildUBX_CFG_Frames()[B
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Ljava/io/FileOutputStream;->write([B)V
++
++    .line 394
++    invoke-virtual {v0}, Ljava/io/FileOutputStream;->flush()V
++
++    .line 395
++    invoke-virtual {v0}, Ljava/io/FileOutputStream;->close()V
++    :try_end_13
++    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_13} :catch_14
++
++    .line 401
++    :goto_13
++    return-void
++
++    .line 397
++    :catch_14
++    move-exception v0
++
++    goto :goto_13
++.end method
++
++.method public selectURL(Ljava/lang/String;)Ljava/lang/String;
++    .registers 8
++
++    .prologue
++    const/4 v4, 0x1
++
++    .line 297
++    iget-boolean v0, p0, Log/patch/UBXCFGTuner;->m_UseLastKnownPos:Z
++
++    if-eqz v0, :cond_87
++
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownLatitudeDeg:F
++
++    invoke-static {v0}, Ljava/lang/Float;->isNaN(F)Z
++
++    move-result v0
++
++    if-nez v0, :cond_87
++
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownLongitudeDeg:F
++
++    invoke-static {v0}, Ljava/lang/Float;->isNaN(F)Z
++
++    move-result v0
++
++    if-nez v0, :cond_87
++
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownEllipsoidalHeight:F
++
++    invoke-static {v0}, Ljava/lang/Float;->isNaN(F)Z
++
++    move-result v0
++
++    if-nez v0, :cond_87
++
++    move v3, v4
++
++    .line 299
++    :goto_1e
++    if-eqz v3, :cond_8a
++
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownLatitudeDeg:F
++
++    move v2, v0
++
++    .line 300
++    :goto_23
++    if-eqz v3, :cond_8e
++
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownLongitudeDeg:F
++
++    move v1, v0
++
++    .line 301
++    :goto_28
++    if-eqz v3, :cond_92
++
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownEllipsoidalHeight:F
++
++    .line 303
++    :goto_2c
++    invoke-virtual {p0}, Log/patch/UBXCFGTuner;->getUseOnline()Z
++
++    move-result v3
++
++    if-ne v3, v4, :cond_95
++
++    .line 304
++    new-instance v3, Ljava/lang/StringBuilder;
++
++    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
++
++    .line 305
++    iget-object v5, p0, Log/patch/UBXCFGTuner;->m_OnlineURLbase:Ljava/lang/String;
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 306
++    const-string v5, "/GetOnlineData.ashx?token="
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 307
++    iget-object v5, p0, Log/patch/UBXCFGTuner;->m_DJIUbloxToken:Ljava/lang/String;
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 308
++    const-string v5, ";gnss="
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 309
++    iget-object v5, p0, Log/patch/UBXCFGTuner;->m_OnlineURLgnss:Ljava/lang/String;
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 310
++    const-string v5, ";datatype="
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 311
++    iget-object v5, p0, Log/patch/UBXCFGTuner;->m_OnlineURLdatatypes:Ljava/lang/String;
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 312
++    const-string v5, ";lat="
++
++    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 313
++    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
++
++    .line 314
++    const-string v2, ";lon="
++
++    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 315
++    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
++
++    .line 316
++    const-string v1, ";alt="
++
++    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 317
++    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
++
++    .line 318
++    const-string v0, ";tacc=3600"
++
++    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 319
++    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    .line 320
++    invoke-virtual {p0}, Log/patch/UBXCFGTuner;->getDoLogging()Z
++
++    move-result v1
++
++    if-ne v1, v4, :cond_86
++
++    .line 321
++    iget-object v1, p0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    invoke-virtual {v1, v0}, Ljava/util/logging/Logger;->info(Ljava/lang/String;)V
++
++    .line 336
++    :cond_86
++    :goto_86
++    return-object v0
++
++    .line 297
++    :cond_87
++    const/4 v0, 0x0
++
++    move v3, v0
++
++    goto :goto_1e
++
++    .line 299
++    :cond_8a
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LatitudeDeg:F
++
++    move v2, v0
++
++    goto :goto_23
++
++    .line 300
++    :cond_8e
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_LongitudeDeg:F
++
++    move v1, v0
++
++    goto :goto_28
++
++    .line 301
++    :cond_92
++    iget v0, p0, Log/patch/UBXCFGTuner;->m_EllipsoidalHeight:F
++
++    goto :goto_2c
++
++    .line 326
++    :cond_95
++    new-instance v0, Ljava/lang/StringBuilder;
++
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++
++    .line 327
++    iget-object v1, p0, Log/patch/UBXCFGTuner;->m_OfflineURLbase:Ljava/lang/String;
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 328
++    const-string v1, "/GetOfflineData.ashx?token="
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 329
++    iget-object v1, p0, Log/patch/UBXCFGTuner;->m_DJIUbloxToken:Ljava/lang/String;
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 330
++    const-string v1, ";gnss=gps,glo;alm=gps,glo;period=1;resolution=1"
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    .line 331
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    .line 332
++    invoke-virtual {p0}, Log/patch/UBXCFGTuner;->getDoLogging()Z
++
++    move-result v1
++
++    if-ne v1, v4, :cond_86
++
++    .line 333
++    iget-object v1, p0, Log/patch/UBXCFGTuner;->m_logger:Ljava/util/logging/Logger;
++
++    invoke-virtual {v1, v0}, Ljava/util/logging/Logger;->info(Ljava/lang/String;)V
++
++    goto :goto_86
++.end method
++
++.method setAddUBXCFGFramesMode(I)V
++    .registers 2
++
++    .prologue
++    .line 355
++    iput p1, p0, Log/patch/UBXCFGTuner;->m_AddUBXCFGFramesMode:I
++
++    .line 356
++    return-void
++.end method
++
++.method public setDJIOfflineURL(Ljava/lang/String;)V
++    .registers 4
++
++    .prologue
++    .line 153
++    iput-object p1, p0, Log/patch/UBXCFGTuner;->m_DJIOfflineURLString:Ljava/lang/String;
++
++    .line 154
++    const/16 v0, 0x43
++
++    const/16 v1, 0x59
++
++    invoke-virtual {p1, v0, v1}, Ljava/lang/String;->substring(II)Ljava/lang/String;
++
++    move-result-object v0
++
++    iput-object v0, p0, Log/patch/UBXCFGTuner;->m_DJIUbloxToken:Ljava/lang/String;
++
++    .line 155
++    return-void
++.end method
++
++.method public setDoLogging(Z)V
++    .registers 2
++
++    .prologue
++    .line 210
++    iput-boolean p1, p0, Log/patch/UBXCFGTuner;->m_DoLogging:Z
++
++    .line 211
++    return-void
++.end method
++
++.method public setLastKnownPos(DDD)V
++    .registers 8
++
++    .prologue
++    .line 166
++    double-to-float v0, p1
++
++    iput v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownLatitudeDeg:F
++
++    .line 167
++    double-to-float v0, p3
++
++    iput v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownLongitudeDeg:F
++
++    .line 168
++    double-to-float v0, p5
++
++    iput v0, p0, Log/patch/UBXCFGTuner;->m_LastKnownEllipsoidalHeight:F
++
++    .line 169
++    return-void
++.end method
++
++.method public setMaxDownloadAge(I)V
++    .registers 2
++
++    .prologue
++    .line 230
++    iput p1, p0, Log/patch/UBXCFGTuner;->m_MaxDownloadAge:I
++
++    .line 231
++    return-void
++.end method
++
++.method public setMaxDownloadRetries(I)V
++    .registers 2
++
++    .prologue
++    .line 238
++    iput p1, p0, Log/patch/UBXCFGTuner;->m_MaxDownloadRetries:I
++
++    .line 239
++    return-void
++.end method
++
++.method public setOnlineURLbase(Ljava/lang/String;)V
++    .registers 2
++
++    .prologue
++    .line 262
++    iput-object p1, p0, Log/patch/UBXCFGTuner;->m_OnlineURLbase:Ljava/lang/String;
++
++    .line 263
++    return-void
++.end method
++
++.method public setOnlineURLdatatypes(Ljava/lang/String;)V
++    .registers 2
++
++    .prologue
++    .line 258
++    iput-object p1, p0, Log/patch/UBXCFGTuner;->m_OnlineURLdatatypes:Ljava/lang/String;
++
++    .line 259
++    return-void
++.end method
++
++.method public setOnlineURLgnss(Ljava/lang/String;)V
++    .registers 2
++
++    .prologue
++    .line 266
++    iput-object p1, p0, Log/patch/UBXCFGTuner;->m_OnlineURLgnss:Ljava/lang/String;
++
++    .line 267
++    return-void
++.end method
++
++.method public setUseLastKnownPos(Z)V
++    .registers 2
++
++    .prologue
++    .line 218
++    iput-boolean p1, p0, Log/patch/UBXCFGTuner;->m_UseLastKnownPos:Z
++
++    .line 219
++    return-void
++.end method
++
++.method public setUseOnline(Z)V
++    .registers 2
++
++    .prologue
++    .line 246
++    iput-boolean p1, p0, Log/patch/UBXCFGTuner;->m_UseOnline:Z
++
++    .line 247
++    return-void
++.end method
