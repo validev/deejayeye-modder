@@ -1,0 +1,12 @@
+diff -Naur orig/smali_classes6/dji/setting/ui/flyc/identify/a.smali mod/smali_classes6/dji/setting/ui/flyc/identify/a.smali
+--- orig/smali_classes6/dji/setting/ui/flyc/identify/a.smali	2018-04-11 12:06:33.353591166 +0200
++++ mod/smali_classes6/dji/setting/ui/flyc/identify/a.smali	2018-07-10 14:39:24.693030849 +0200
+@@ -133,7 +133,7 @@
+     if-ge v0, v2, :cond_0
+ 
+     .line 110
+-    const/4 v4, 0x1
++    const/4 v4, 0x0
+ 
+     aput-boolean v4, v3, v0
+ 
