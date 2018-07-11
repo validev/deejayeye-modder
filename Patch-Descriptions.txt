@@ -69,4 +69,4 @@ removeNfzUpdate:
 Removes popup "New Fly Safe data found... DJI GO 4 cannot be used normally without updating." and similiar popups. It's not removing NFZ system, just upgrade popups!
 
 enableLongerWaypointMissions:
-Allows for longer missions (20km) and waypoints to be farther away from homepoint (5km)
+Allows for longer missions (20km) and waypoints to be farther away from homepoint (5km) and to go higher (4km)
