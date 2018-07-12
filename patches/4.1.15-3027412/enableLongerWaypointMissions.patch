@@ -1,3 +1,17 @@
+diff -Naur orig/res/raw/flyc_param_infos mod/res/raw/flyc_param_infos
+--- orig/res/raw/flyc_param_infos	2018-04-11 10:39:02.915030739 +0200
++++ mod/res/raw/flyc_param_infos	2018-07-12 16:30:37.439318346 +0200
+@@ -2361,8 +2361,8 @@
+ 		"size" : 2,
+ 		"attribute" : 11,
+ 		"minValue" : 20,
+-		"maxValue" : 500,
+-		"defaultValue" : 120,
++		"maxValue" : 4000,
++		"defaultValue" : 4000,
+ 		"name" : "g_config.flying_limit.max_height_0"
+ 	},
+ 	{
 diff -Naur orig/smali_classes4/dji/pilot/dji_groundstation/controller/DataMgr/f.smali mod/smali_classes4/dji/pilot/dji_groundstation/controller/DataMgr/f.smali
 --- orig/smali_classes4/dji/pilot/dji_groundstation/controller/DataMgr/f.smali	2018-04-11 10:39:16.299914902 +0200
 +++ mod/smali_classes4/dji/pilot/dji_groundstation/controller/DataMgr/f.smali	2018-06-26 16:50:48.145100996 +0200
@@ -49,6 +63,15 @@ diff -Naur orig/smali_classes4/dji/pilot/dji_groundstation/controller/DataMgr/f.
 diff -Naur orig/smali_classes3/dji/common/mission/waypoint/Waypoint.smali mod/smali_classes3/dji/common/mission/waypoint/Waypoint.smali
 --- orig/smali_classes3/dji/common/mission/waypoint/Waypoint.smali	2018-04-10 18:07:03.138936300 +0200
 +++ mod/smali_classes3/dji/common/mission/waypoint/Waypoint.smali	2018-07-12 00:42:27.135026010 +0200
+@@ -10,7 +10,7 @@
+ 
+ .field public static final MAX_ACTION_TIMEOUT:I = 0x3e7
+ 
+-.field public static final MAX_ALTITUDE:F = 500.0f
++.field public static final MAX_ALTITUDE:F = 4000.0f
+ 
+ .field public static final MAX_CORNER_RADIUS:F = 1000.0f
+ 
 @@ -268,7 +268,7 @@
  
      iget v0, p0, Ldji/common/mission/waypoint/Waypoint;->altitude:F
