@@ -107,7 +107,7 @@ rm lib/armeabi-v7a/libFREncrypt.so
 mv lib/armeabi-v7a/libFREncrypt-n.so lib/armeabi-v7a/libFREncrypt.so
 fi
 patch -l -p1 -N -r - < ../patches/$apkver-$apkvcode/origin
-unix2dos $1/res/raw/flyc_param_infos
+unix2dos res/raw/flyc_param_infos
 cd ..
 echo "========================================"
 echo "             Done patching              "
