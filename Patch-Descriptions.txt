@@ -79,3 +79,6 @@ App-part of Glonass capability. Flight controller has to be patched, too.
 
 enableLongerWaypointMissions:
 Allows for longer missions (20km) and waypoints to be farther away from homepoint (5km) and to go higher (4km)
+
+validHereLicense:
+Enables Here Maps again with new License Key
