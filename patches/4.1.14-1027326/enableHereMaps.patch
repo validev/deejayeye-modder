@@ -1,6 +1,6 @@
 diff -Naur orig/AndroidManifest.xml mod/AndroidManifest.xml
 --- orig/AndroidManifest.xml	2018-06-01 20:13:31.007326100 +0200
-+++ mod/AndroidManifest.xml	2018-10-05 20:03:46.731180100 +0200
++++ mod/AndroidManifest.xml	2018-10-06 23:23:17.711992100 +0200
 @@ -59,9 +59,9 @@
          <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
          <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyB-ICOGgAOCBopE5MdBDJXEkljD27pBSiI"/>
