@@ -14,3 +14,79 @@ diff -Naur orig/AndroidManifest.xml mod/AndroidManifest.xml
          <service android:label="DJIHereMapService" android:name="com.here.android.mpa.service.MapService" android:process="dji.Here.Map.Service.v2" android:stopWithTask="false">
              <intent-filter>
                  <action android:name="com.here.android.mpa.service.MapService.dji.go.v4"/>
+--- orig/smali_classes2/com/dji/mapkit/maps/hmap/a.smali	2018-06-01 20:16:03.000000000 +0200
++++ mod/smali_classes2/com/dji/mapkit/maps/hmap/a.smali	2018-10-07 18:24:16.507814900 +0200
+@@ -786,11 +786,7 @@
+     .locals 2
+ 
+     .prologue
+-    .line 298
+-    packed-switch p1, :pswitch_data_0
+-
+     .line 309
+-    :pswitch_0
+     iget-object v0, p0, Lcom/dji/mapkit/maps/hmap/a;->g:Lcom/here/android/mpa/mapping/Map;
+ 
+     const-string v1, "N0U7LwYydwA4Uw=="
+@@ -802,61 +798,7 @@
+     invoke-virtual {v0, v1}, Lcom/here/android/mpa/mapping/Map;->setMapScheme(Ljava/lang/String;)Lcom/here/android/mpa/mapping/Map;
+ 
+     .line 311
+-    :goto_0
+     return-void
+-
+-    .line 300
+-    :pswitch_1
+-    iget-object v0, p0, Lcom/dji/mapkit/maps/hmap/a;->g:Lcom/here/android/mpa/mapping/Map;
+-
+-    const-string v1, "N0U7LwYydwA4Uw=="
+-
+-    invoke-static {v1}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v0, v1}, Lcom/here/android/mpa/mapping/Map;->setMapScheme(Ljava/lang/String;)Lcom/here/android/mpa/mapping/Map;
+-
+-    goto :goto_0
+-
+-    .line 303
+-    :pswitch_2
+-    iget-object v0, p0, Lcom/dji/mapkit/maps/hmap/a;->g:Lcom/here/android/mpa/mapping/Map;
+-
+-    const-string v1, "Kks9JwsyMBA8BC0jHg=="
+-
+-    invoke-static {v1}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v0, v1}, Lcom/here/android/mpa/mapping/Map;->setMapScheme(Ljava/lang/String;)Lcom/here/android/mpa/mapping/Map;
+-
+-    goto :goto_0
+-
+-    .line 306
+-    :pswitch_3
+-    iget-object v0, p0, Lcom/dji/mapkit/maps/hmap/a;->g:Lcom/here/android/mpa/mapping/Map;
+-
+-    const-string v1, "MVMrMA46dwA4Uw=="
+-
+-    invoke-static {v1}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v0, v1}, Lcom/here/android/mpa/mapping/Map;->setMapScheme(Ljava/lang/String;)Lcom/here/android/mpa/mapping/Map;
+-
+-    goto :goto_0
+-
+-    .line 298
+-    nop
+-
+-    :pswitch_data_0
+-    .packed-switch 0x1
+-        :pswitch_1
+-        :pswitch_2
+-        :pswitch_0
+-        :pswitch_3
+-    .end packed-switch
+ .end method
+ 
+ .method public a(Lcom/dji/mapkit/a/b;)V
