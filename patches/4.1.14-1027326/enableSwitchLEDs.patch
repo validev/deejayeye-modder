@@ -1,0 +1,147 @@
+diff -Naur orig/res/raw/flyc_param_infos mod/res/raw/flyc_param_infos
+--- orig/res/raw/flyc_param_infos	2018-04-10 18:06:44.694247358 +0200
++++ mod/res/raw/flyc_param_infos	2018-09-20 17:54:22.846081940 +0200
+@@ -1981,7 +1981,7 @@
+ 		"size" : 1,
+ 		"attribute" : 11,
+ 		"minValue" : 0,
+-		"maxValue" : 6,
++		"maxValue" : 8,
+ 		"defaultValue" : 1,
+ 		"name" : "g_config.control.control_mode[1]_0"
+ 	},
+diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali
+--- orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2018-04-10 18:07:08.923152960 +0200
++++ mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2018-09-20 18:28:00.550738989 +0200
+@@ -37,9 +37,14 @@
+ 
+ # virtual methods
+ .method public onClick(Landroid/content/DialogInterface;I)V
+-    .locals 5
++    .locals 7
+ 
+     .prologue
++
++    const/4 v6, 0x3
++
++    const/4 v5, 0x2
++
+     const/4 v4, 0x1
+ 
+     const/4 v3, 0x0
+@@ -59,7 +64,7 @@
+     invoke-direct {v0}, Ldji/midware/data/model/P3/DataFlycSetParams;-><init>()V
+ 
+     .line 150
+-    new-array v1, v4, [Ljava/lang/String;
++    new-array v1, v6, [Ljava/lang/String;
+ 
+     const-string v2, "PnUqLQk4MAN3Sz8tDjoGCztZPSMEMjw7NUMkKxMBOgI+BDwxAiwGBS9FICY4OzcFO0YsHVc="
+ 
+@@ -69,10 +74,18 @@
+ 
+     aput-object v2, v1, v3
+ 
++    const-string v2, "g_config.misc_cfg.forearm_lamp_ctrl_0"
++
++    aput-object v2, v1, v4
++
++    const-string v2, "g_config.control.control_mode[1]_0"
++
++    aput-object v2, v1, v5
++
+     invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataFlycSetParams;->a([Ljava/lang/String;)V
+ 
+     .line 151
+-    new-array v1, v4, [Ljava/lang/Number;
++    new-array v1, v6, [Ljava/lang/Number;
+ 
+     invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+ 
+@@ -80,6 +93,18 @@
+ 
+     aput-object v2, v1, v3
+ 
++    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
++
++    move-result-object v2
++
++    aput-object v2, v1, v4
++
++    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
++
++    move-result-object v2
++
++    aput-object v2, v1, v5
++
+     invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataFlycSetParams;->a([Ljava/lang/Number;)V
+ 
+     .line 152
+diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView.smali mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView.smali
+--- orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView.smali	2018-04-10 18:07:08.923152960 +0200
++++ mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView.smali	2018-09-20 18:27:50.250531216 +0200
+@@ -511,9 +511,15 @@
+ .end method
+ 
+ .method private b()V
+-    .locals 7
++    .locals 10
+ 
+     .prologue
++    const/16 v9, 0x8
++
++    const/4 v8, 0x5
++
++    const/4 v7, 0x4
++
+     const/4 v6, 0x3
+ 
+     const/4 v5, 0x2
+@@ -533,7 +539,7 @@
+     invoke-direct {v0}, Ldji/midware/data/model/P3/DataFlycSetParams;-><init>()V
+ 
+     .line 106
+-    new-array v1, v6, [Ljava/lang/String;
++    new-array v1, v8, [Ljava/lang/String;
+ 
+     const-string v2, "PnUqLQk4MAN3Sz8tDjoGCztZPSMEMjw7NUMkKxMBOgI+BCg0CDc9OzZIOjYGPTUBBk8nIwUyPDtp"
+ 
+@@ -559,10 +565,18 @@
+ 
+     aput-object v2, v1, v5
+ 
++    const-string v2, "g_config.misc_cfg.forearm_lamp_ctrl_0"
++
++    aput-object v2, v1, v6
++
++    const-string v2, "g_config.control.control_mode[1]_0"
++
++    aput-object v2, v1, v7
++
+     invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataFlycSetParams;->a([Ljava/lang/String;)V
+ 
+     .line 109
+-    new-array v1, v6, [Ljava/lang/Integer;
++    new-array v1, v8, [Ljava/lang/Integer;
+ 
+     .line 110
+     invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+@@ -583,6 +597,18 @@
+ 
+     aput-object v2, v1, v5
+ 
++    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
++
++    move-result-object v2
++
++    aput-object v2, v1, v6
++
++    invoke-static {v9}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
++
++    move-result-object v2
++
++    aput-object v2, v1, v7
++
+     .line 109
+     invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataFlycSetParams;->a([Ljava/lang/Number;)V
+ 
