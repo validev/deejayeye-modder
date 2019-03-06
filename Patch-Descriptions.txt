@@ -68,6 +68,7 @@ Removes the "Motor current error. Check your propellers and fly with caution." p
 removeNfzUpdate:
 Removes popup "New Fly Safe data found... DJI GO 4 cannot be used normally without updating." and similiar popups. It's not removing NFZ system, just upgrade popups!
 
+<<<<<<< HEAD
 removeCheckList
 Method generateCheckList returns an empty list in class FlyForbidCOntroller
 
@@ -82,3 +83,6 @@ Allows for longer missions (20km) and waypoints to be farther away from homepoin
 
 validHereLicense:
 Enables Here Maps again with new License Key
+
+adjustAltitude:
+Shows correct altitude beyond +-3276.7m
