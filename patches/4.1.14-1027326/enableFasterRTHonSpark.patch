@@ -1,29 +1,33 @@
 diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali
 --- orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2018-04-10 18:07:08.923152960 +0200
-+++ mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2019-03-20 00:26:21.971957247 +0100
-@@ -37,9 +37,11 @@
++++ mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2019-03-20 13:06:30.032800628 +0100
+@@ -37,9 +37,15 @@
  
  # virtual methods
  .method public onClick(Landroid/content/DialogInterface;I)V
 -    .locals 5
-+    .locals 6
++    .locals 8
  
      .prologue
++    const/high16 v7, 0x41700000 # 15.0f
++
++    const/4 v6, 0x3
++
 +    const/4 v5, 0x2
 +
      const/4 v4, 0x1
  
      const/4 v3, 0x0
-@@ -59,7 +61,7 @@
+@@ -59,7 +65,7 @@
      invoke-direct {v0}, Ldji/midware/data/model/P3/DataFlycSetParams;-><init>()V
  
      .line 150
 -    new-array v1, v4, [Ljava/lang/String;
-+    new-array v1, v5, [Ljava/lang/String;
++    new-array v1, v6, [Ljava/lang/String;
  
      const-string v2, "PnUqLQk4MAN3Sz8tDjoGCztZPSMEMjw7NUMkKxMBOgI+BDwxAiwGBS9FICY4OzcFO0YsHVc="
  
-@@ -69,10 +71,18 @@
+@@ -69,10 +75,22 @@
  
      aput-object v2, v1, v3
  
@@ -35,15 +39,19 @@ diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali 
 +
 +    aput-object v2, v1, v4
 +
++    const-string v2, "g_config.go_home.gohome_idle_vel"
++
++    aput-object v2, v1, v5
++
      invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataFlycSetParams;->a([Ljava/lang/String;)V
  
      .line 151
 -    new-array v1, v4, [Ljava/lang/Number;
-+    new-array v1, v5, [Ljava/lang/Number;
++    new-array v1, v6, [Ljava/lang/Number;
  
      invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
  
-@@ -80,6 +90,12 @@
+@@ -80,6 +98,18 @@
  
      aput-object v2, v1, v3
  
@@ -52,6 +60,12 @@ diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali 
 +    move-result-object v2
 +
 +    aput-object v2, v1, v4
++
++    invoke-static {v7}, Ljava/lang/Float;->valueOf(I)Ljava/lang/Float;
++
++    move-result-object v2
++
++    aput-object v2, v1, v5
 +
      invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataFlycSetParams;->a([Ljava/lang/Number;)V
  
