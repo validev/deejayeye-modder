@@ -86,8 +86,8 @@ Enables Here Maps again with new License Key
 adjustAltitude:
 Shows correct altitude beyond +-3276.7m
 
-enableFasterRTHonSpark:
-Spark will go up to 15m/s when return to home button is pressed and obstacle avoidance is switched off
-
 enableCSCOnSpark:
 enables the CSC option in Settings -> Advanced for Spark
+
+enableGoHomeAvoidSwitchOnSpark:
+brings back the option to disable ETH Obstacle Detection and thus the possibility to have a faster RTH speed (g_config.go_home.gohome_idle_vel) on Spark
