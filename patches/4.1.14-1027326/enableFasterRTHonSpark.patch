@@ -1,6 +1,27 @@
+diff -Naur orig/res/raw/flyc_param_infos mod/res/raw/flyc_param_infos
+--- orig/res/raw/flyc_param_infos	2018-04-10 18:06:44.694247358 +0200
++++ mod/res/raw/flyc_param_infos	2019-08-13 14:30:01.452259543 +0200
+@@ -6822,5 +6822,15 @@
+          "defaultValue" : 0,
+          "name" : "g_cfg_debug.follow_gimbal_yaw_when_watch_0",
+          "modify" : true
+-     }
++     },{
++			 "index" : 2001,
++			 "typeID" : 8,
++			 "size" : 4,
++			 "attribute" : 11,
++			 "minValue" : 1.000000,
++			 "maxValue" : 15.000000,
++			 "defaultValue" : 10.000000,
++			 "name" : "g_config.go_home.gohome_idle_vel_0",
++			 "modify" : true
++		 }
+ ]
+\ Kein Zeilenumbruch am Dateiende.
 diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali
 --- orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2018-04-10 18:07:08.923152960 +0200
-+++ mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2019-03-20 13:06:30.032800628 +0100
++++ mod/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali	2019-08-13 14:29:14.271589561 +0200
 @@ -37,9 +37,15 @@
  
  # virtual methods
@@ -39,7 +60,7 @@ diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali 
 +
 +    aput-object v2, v1, v4
 +
-+    const-string v2, "g_config.go_home.gohome_idle_vel"
++    const-string v2, "g_config.go_home.gohome_idle_vel_0"
 +
 +    aput-object v2, v1, v5
 +
@@ -61,7 +82,7 @@ diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionFrontAssView$2.smali 
 +
 +    aput-object v2, v1, v4
 +
-+    invoke-static {v7}, Ljava/lang/Float;->valueOf(I)Ljava/lang/Float;
++    invoke-static {v7}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
 +
 +    move-result-object v2
 +
