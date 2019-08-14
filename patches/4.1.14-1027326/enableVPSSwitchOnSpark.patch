@@ -1,0 +1,36 @@
+diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionAdvancedSettingItemViewGroup.smali mod/smali_classes6/dji/setting/ui/vision/VisionAdvancedSettingItemViewGroup.smali
+--- orig/smali_classes6/dji/setting/ui/vision/VisionAdvancedSettingItemViewGroup.smali	2018-04-10 18:07:08.919152810 +0200
++++ mod/smali_classes6/dji/setting/ui/vision/VisionAdvancedSettingItemViewGroup.smali	2019-08-14 14:35:30.533335498 +0200
+@@ -30,7 +30,7 @@
+     if-eqz v0, :cond_0
+ 
+     .line 39
+-    const/16 v0, 0x8
++    const/16 v0, 0x0
+ 
+     invoke-virtual {p0, v0}, Ldji/setting/ui/vision/VisionAdvancedSettingItemViewGroup;->setVisibility(I)V
+ 
+diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionDownSensorViewGroup.smali mod/smali_classes6/dji/setting/ui/vision/VisionDownSensorViewGroup.smali
+--- orig/smali_classes6/dji/setting/ui/vision/VisionDownSensorViewGroup.smali	2018-04-10 18:07:08.919152810 +0200
++++ mod/smali_classes6/dji/setting/ui/vision/VisionDownSensorViewGroup.smali	2019-08-14 14:36:43.818221098 +0200
+@@ -34,7 +34,7 @@
+     if-eqz v0, :cond_0
+ 
+     .line 49
+-    const/16 v0, 0x8
++    const/16 v0, 0x0
+ 
+     invoke-virtual {p0, v0}, Ldji/setting/ui/vision/VisionDownSensorViewGroup;->setVisibility(I)V
+ 
+diff -Naur orig/smali_classes6/dji/setting/ui/vision/VisionDownVPSView.smali mod/smali_classes6/dji/setting/ui/vision/VisionDownVPSView.smali
+--- orig/smali_classes6/dji/setting/ui/vision/VisionDownVPSView.smali	2018-04-10 18:07:08.919152810 +0200
++++ mod/smali_classes6/dji/setting/ui/vision/VisionDownVPSView.smali	2019-08-14 14:37:18.542649949 +0200
+@@ -365,7 +365,7 @@
+ 
+     .line 150
+     :cond_1
+-    const/16 v0, 0x8
++    const/16 v0, 0x0
+ 
+     invoke-virtual {p0, v0}, Ldji/setting/ui/vision/VisionDownVPSView;->setVisibility(I)V
+ 
