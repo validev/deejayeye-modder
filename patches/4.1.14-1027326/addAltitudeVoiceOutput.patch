@@ -1,0 +1,1323 @@
+diff -Naur orig/res/values/public.xml mod/res/values/public.xml
+--- orig/res/values/public.xml	2018-06-01 20:13:57.427750600 +0200
++++ mod/res/values/public.xml	2019-08-17 18:07:05.558528800 +0200
+@@ -7385,6 +7385,45 @@
+     <public type="raw" name="tips_voice_gohome_failed" id="0x7f080088" />
+     <public type="raw" name="tips_voice_seriou_low_voltage" id="0x7f080099" />
+     <public type="raw" name="tips_voice_vps_mode" id="0x7f0800a2" />
++    <public type="raw" name="tips_10_meters" id="0x7f080100" />
++    <public type="raw" name="tips_20_meters" id="0x7f080101" />
++    <public type="raw" name="tips_30_meters" id="0x7f080102" />
++    <public type="raw" name="tips_40_meters" id="0x7f080103" />
++    <public type="raw" name="tips_50_meters" id="0x7f080104" />
++    <public type="raw" name="tips_60_meters" id="0x7f080105" />
++    <public type="raw" name="tips_70_meters" id="0x7f080106" />
++    <public type="raw" name="tips_80_meters" id="0x7f080107" />
++    <public type="raw" name="tips_90_meters" id="0x7f080108" />
++    <public type="raw" name="tips_100_meters" id="0x7f080109" />
++    <public type="raw" name="tips_200_meters" id="0x7f08010a" />
++    <public type="raw" name="tips_300_meters" id="0x7f08010b" />
++    <public type="raw" name="tips_400_meters" id="0x7f08010c" />
++    <public type="raw" name="tips_500_meters" id="0x7f08010d" />
++    <public type="raw" name="tips_600_meters" id="0x7f08010e" />
++    <public type="raw" name="tips_700_meters" id="0x7f08010f" />
++    <public type="raw" name="tips_800_meters" id="0x7f080110" />
++    <public type="raw" name="tips_900_meters" id="0x7f080111" />
++    <public type="raw" name="tips_1000_meters" id="0x7f080112" />
++    <public type="raw" name="tips_1100_meters" id="0x7f080113" />
++    <public type="raw" name="tips_1200_meters" id="0x7f080114" />
++    <public type="raw" name="tips_1300_meters" id="0x7f080115" />
++    <public type="raw" name="tips_1400_meters" id="0x7f080116" />
++    <public type="raw" name="tips_1500_meters" id="0x7f080117" />
++    <public type="raw" name="tips_1600_meters" id="0x7f080118" />
++    <public type="raw" name="tips_1700_meters" id="0x7f080119" />
++    <public type="raw" name="tips_1800_meters" id="0x7f08011a" />
++    <public type="raw" name="tips_1900_meters" id="0x7f08011b" />
++    <public type="raw" name="tips_2000_meters" id="0x7f08011c" />
++    <public type="raw" name="tips_2100_meters" id="0x7f08011d" />
++    <public type="raw" name="tips_2200_meters" id="0x7f08011e" />
++    <public type="raw" name="tips_2300_meters" id="0x7f08011f" />
++    <public type="raw" name="tips_2400_meters" id="0x7f080120" />
++    <public type="raw" name="tips_2500_meters" id="0x7f080121" />
++    <public type="raw" name="tips_2600_meters" id="0x7f080122" />
++    <public type="raw" name="tips_2700_meters" id="0x7f080123" />
++    <public type="raw" name="tips_2800_meters" id="0x7f080124" />
++    <public type="raw" name="tips_2900_meters" id="0x7f080125" />
++    <public type="raw" name="tips_3000_meters" id="0x7f080126" />
+     <public type="string" name="com_facebook_device_auth_instructions" id="0x7f090000" />
+     <public type="string" name="com_facebook_image_download_unknown_error" id="0x7f090001" />
+     <public type="string" name="com_facebook_internet_permission_error_message" id="0x7f090002" />
+diff -Naur orig/smali_classes4/dji/pilot/R$raw.smali mod/smali_classes4/dji/pilot/R$raw.smali
+--- orig/smali_classes4/dji/pilot/R$raw.smali	2018-06-01 20:14:28.378619200 +0200
++++ mod/smali_classes4/dji/pilot/R$raw.smali	2019-08-17 17:24:11.210533700 +0200
+@@ -359,6 +359,83 @@
+ 
+ .field public static final video_voice:I = 0x7f0800ab
+ 
++.field public static final tips_10_meters:I = 0x7f080100
++
++.field public static final tips_20_meters:I = 0x7f080101
++
++.field public static final tips_30_meters:I = 0x7f080102
++
++.field public static final tips_40_meters:I = 0x7f080103
++
++.field public static final tips_50_meters:I = 0x7f080104
++
++.field public static final tips_60_meters:I = 0x7f080105
++
++.field public static final tips_70_meters:I = 0x7f080106
++
++.field public static final tips_80_meters:I = 0x7f080107
++
++.field public static final tips_90_meters:I = 0x7f080108
++
++.field public static final tips_100_meters:I = 0x7f080109
++
++.field public static final tips_200_meters:I = 0x7f08010a
++
++.field public static final tips_300_meters:I = 0x7f08010b
++
++.field public static final tips_400_meters:I = 0x7f08010c
++
++.field public static final tips_500_meters:I = 0x7f08010d
++
++.field public static final tips_600_meters:I = 0x7f08010e
++
++.field public static final tips_700_meters:I = 0x7f08010f
++
++.field public static final tips_800_meters:I = 0x7f080110
++
++.field public static final tips_900_meters:I = 0x7f080111
++
++.field public static final tips_1000_meters:I = 0x7f080112
++
++.field public static final tips_1100_meters:I = 0x7f080113
++
++.field public static final tips_1200_meters:I = 0x7f080114
++
++.field public static final tips_1300_meters:I = 0x7f080115
++
++.field public static final tips_1400_meters:I = 0x7f080116
++
++.field public static final tips_1500_meters:I = 0x7f080117
++
++.field public static final tips_1600_meters:I = 0x7f080118
++
++.field public static final tips_1700_meters:I = 0x7f080119
++
++.field public static final tips_1800_meters:I = 0x7f08011a
++
++.field public static final tips_1900_meters:I = 0x7f08011b
++
++.field public static final tips_2000_meters:I = 0x7f08011c
++
++.field public static final tips_2100_meters:I = 0x7f08011d
++
++.field public static final tips_2200_meters:I = 0x7f08011e
++
++.field public static final tips_2300_meters:I = 0x7f08011f
++
++.field public static final tips_2400_meters:I = 0x7f080120
++
++.field public static final tips_2500_meters:I = 0x7f080121
++
++.field public static final tips_2600_meters:I = 0x7f080122
++
++.field public static final tips_2700_meters:I = 0x7f080123
++
++.field public static final tips_2800_meters:I = 0x7f080124
++
++.field public static final tips_2900_meters:I = 0x7f080125
++
++.field public static final tips_3000_meters:I = 0x7f080126
+ 
+ # direct methods
+ .method public constructor <init>()V
+diff -Naur orig/smali_classes5/dji/pilot/publics/c/i$b.smali mod/smali_classes5/dji/pilot/publics/c/i$b.smali
+--- orig/smali_classes5/dji/pilot/publics/c/i$b.smali	2018-06-01 20:14:38.125279100 +0200
++++ mod/smali_classes5/dji/pilot/publics/c/i$b.smali	2019-08-17 18:55:31.882666900 +0200
+@@ -98,6 +98,83 @@
+ 
+ .field public static final enum z:Ldji/pilot/publics/c/i$b;
+ 
++.field public static final enum z00:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z01:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z02:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z03:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z04:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z05:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z06:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z07:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z08:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z09:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z0a:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z0b:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z0c:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z0d:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z0e:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z0f:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z10:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z11:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z12:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z13:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z14:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z15:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z16:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z17:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z18:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z19:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z1a:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z1b:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z1c:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z1d:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z1e:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z1f:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z20:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z21:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z22:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z23:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z24:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z25:Ldji/pilot/publics/c/i$b;
++
++.field public static final enum z26:Ldji/pilot/publics/c/i$b;
+ 
+ # instance fields
+ .field private K:I
+@@ -722,214 +799,994 @@
+ 
+     sput-object v0, Ldji/pilot/publics/c/i$b;->J:Ldji/pilot/publics/c/i$b;
+ 
+-    .line 487
+-    const/16 v0, 0x24
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    new-array v0, v0, [Ldji/pilot/publics/c/i$b;
++    const-string v1, "10_meters"
+ 
+-    sget-object v1, Ldji/pilot/publics/c/i$b;->a:Ldji/pilot/publics/c/i$b;
++    const/16 v2, 0x24
+ 
+-    aput-object v1, v0, v4
++    const v3, 0x7f080100
+ 
+-    sget-object v1, Ldji/pilot/publics/c/i$b;->b:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v1, v0, v5
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z00:Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v1, Ldji/pilot/publics/c/i$b;->c:Ldji/pilot/publics/c/i$b;
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    aput-object v1, v0, v6
++    const-string v1, "20_meters"
+ 
+-    sget-object v1, Ldji/pilot/publics/c/i$b;->d:Ldji/pilot/publics/c/i$b;
++    const/16 v2, 0x25
+ 
+-    aput-object v1, v0, v7
++    const v3, 0x7f080101
+ 
+-    sget-object v1, Ldji/pilot/publics/c/i$b;->e:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v1, v0, v8
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z01:Ldji/pilot/publics/c/i$b;
+ 
+-    const/4 v1, 0x5
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->f:Ldji/pilot/publics/c/i$b;
++    const-string v1, "30_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x26
+ 
+-    const/4 v1, 0x6
++    const v3, 0x7f080102
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->g:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z02:Ldji/pilot/publics/c/i$b;
+ 
+-    const/4 v1, 0x7
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->h:Ldji/pilot/publics/c/i$b;
++    const-string v1, "40_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x27
+ 
+-    const/16 v1, 0x8
++    const v3, 0x7f080103
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->i:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z03:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x9
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->j:Ldji/pilot/publics/c/i$b;
++    const-string v1, "50_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x28
+ 
+-    const/16 v1, 0xa
++    const v3, 0x7f080104
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->k:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z04:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0xb
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->l:Ldji/pilot/publics/c/i$b;
++    const-string v1, "60_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x29
+ 
+-    const/16 v1, 0xc
++    const v3, 0x7f080105
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->m:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z05:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0xd
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->n:Ldji/pilot/publics/c/i$b;
++    const-string v1, "70_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x2a
+ 
+-    const/16 v1, 0xe
++    const v3, 0x7f080106
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->o:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z06:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0xf
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->p:Ldji/pilot/publics/c/i$b;
++    const-string v1, "80_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x2b
+ 
+-    const/16 v1, 0x10
++    const v3, 0x7f080107
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->q:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z07:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x11
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->r:Ldji/pilot/publics/c/i$b;
++    const-string v1, "90_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x2c
+ 
+-    const/16 v1, 0x12
++    const v3, 0x7f080108
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->s:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z08:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x13
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->t:Ldji/pilot/publics/c/i$b;
++    const-string v1, "100_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x2d
+ 
+-    const/16 v1, 0x14
++    const v3, 0x7f080109
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->u:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z09:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x15
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->v:Ldji/pilot/publics/c/i$b;
++    const-string v1, "200_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x2e
+ 
+-    const/16 v1, 0x16
++    const v3, 0x7f08010a
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->w:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z0a:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x17
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->x:Ldji/pilot/publics/c/i$b;
++    const-string v1, "300_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x2f
+ 
+-    const/16 v1, 0x18
++    const v3, 0x7f08010b
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->y:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z0b:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x19
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->z:Ldji/pilot/publics/c/i$b;
++    const-string v1, "400_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x30
+ 
+-    const/16 v1, 0x1a
++    const v3, 0x7f08010c
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->A:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z0c:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x1b
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->B:Ldji/pilot/publics/c/i$b;
++    const-string v1, "500_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x31
+ 
+-    const/16 v1, 0x1c
++    const v3, 0x7f08010d
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->C:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z0d:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x1d
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->D:Ldji/pilot/publics/c/i$b;
++    const-string v1, "600_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x32
+ 
+-    const/16 v1, 0x1e
++    const v3, 0x7f08010e
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->E:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z0e:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x1f
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->F:Ldji/pilot/publics/c/i$b;
++    const-string v1, "700_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x33
+ 
+-    const/16 v1, 0x20
++    const v3, 0x7f08010f
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->G:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z0f:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x21
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->H:Ldji/pilot/publics/c/i$b;
++    const-string v1, "800_meters"
+ 
+-    aput-object v2, v0, v1
++    const/16 v2, 0x34
+ 
+-    const/16 v1, 0x22
++    const v3, 0x7f080110
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->I:Ldji/pilot/publics/c/i$b;
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
+ 
+-    aput-object v2, v0, v1
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z10:Ldji/pilot/publics/c/i$b;
+ 
+-    const/16 v1, 0x23
++    new-instance v0, Ldji/pilot/publics/c/i$b;
+ 
+-    sget-object v2, Ldji/pilot/publics/c/i$b;->J:Ldji/pilot/publics/c/i$b;
++    const-string v1, "900_meters"
++
++    const/16 v2, 0x35
++
++    const v3, 0x7f080111
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z11:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1000_meters"
++
++    const/16 v2, 0x36
++
++    const v3, 0x7f080112
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z12:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1100_meters"
++
++    const/16 v2, 0x37
++
++    const v3, 0x7f080113
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z13:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1200_meters"
++
++    const/16 v2, 0x38
++
++    const v3, 0x7f080114
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z14:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1300_meters"
++
++    const/16 v2, 0x39
++
++    const v3, 0x7f080115
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z15:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1400_meters"
++
++    const/16 v2, 0x3a
++
++    const v3, 0x7f080116
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z16:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1500_meters"
++
++    const/16 v2, 0x3b
++
++    const v3, 0x7f080117
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z17:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1600_meters"
++
++    const/16 v2, 0x3c
++
++    const v3, 0x7f080118
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z18:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1700_meters"
++
++    const/16 v2, 0x3d
++
++    const v3, 0x7f080119
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z19:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1800_meters"
++
++    const/16 v2, 0x3e
++
++    const v3, 0x7f08011a
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z1a:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "1900_meters"
++
++    const/16 v2, 0x3f
++
++    const v3, 0x7f08011b
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z1b:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2000_meters"
++
++    const/16 v2, 0x40
++
++    const v3, 0x7f08011c
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z1c:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2100_meters"
++
++    const/16 v2, 0x41
++
++    const v3, 0x7f08011d
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z1d:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2200_meters"
++
++    const/16 v2, 0x42
++
++    const v3, 0x7f08011e
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z1e:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2300_meters"
++
++    const/16 v2, 0x43
++
++    const v3, 0x7f08011f
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z1f:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2400_meters"
++
++    const/16 v2, 0x44
++
++    const v3, 0x7f080120
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z20:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2500_meters"
++
++    const/16 v2, 0x45
++
++    const v3, 0x7f080121
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z21:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2600_meters"
++
++    const/16 v2, 0x46
++
++    const v3, 0x7f080122
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z22:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2700_meters"
++
++    const/16 v2, 0x47
++
++    const v3, 0x7f080123
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z23:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2800_meters"
++
++    const/16 v2, 0x48
++
++    const v3, 0x7f080124
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z24:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "2900_meters"
++
++    const/16 v2, 0x49
++
++    const v3, 0x7f080125
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z25:Ldji/pilot/publics/c/i$b;
++
++    new-instance v0, Ldji/pilot/publics/c/i$b;
++
++    const-string v1, "3000_meters"
++
++    const/16 v2, 0x4a
++
++    const v3, 0x7f080126
++
++    invoke-direct {v0, v1, v2, v3}, Ldji/pilot/publics/c/i$b;-><init>(Ljava/lang/String;II)V
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->z26:Ldji/pilot/publics/c/i$b;
++
++   .line 487
++    const/16 v0, 0x4B
++
++    new-array v0, v0, [Ldji/pilot/publics/c/i$b;
++
++    sget-object v1, Ldji/pilot/publics/c/i$b;->a:Ldji/pilot/publics/c/i$b;
++
++    aput-object v1, v0, v4
++
++    sget-object v1, Ldji/pilot/publics/c/i$b;->b:Ldji/pilot/publics/c/i$b;
++
++    aput-object v1, v0, v5
++
++    sget-object v1, Ldji/pilot/publics/c/i$b;->c:Ldji/pilot/publics/c/i$b;
++
++    aput-object v1, v0, v6
++
++    sget-object v1, Ldji/pilot/publics/c/i$b;->d:Ldji/pilot/publics/c/i$b;
++
++    aput-object v1, v0, v7
++
++    sget-object v1, Ldji/pilot/publics/c/i$b;->e:Ldji/pilot/publics/c/i$b;
++
++    aput-object v1, v0, v8
++
++    const/4 v1, 0x5
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->f:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/4 v1, 0x6
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->g:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/4 v1, 0x7
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->h:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x8
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->i:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x9
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->j:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0xa
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->k:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0xb
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->l:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0xc
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->m:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0xd
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->n:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0xe
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->o:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0xf
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->p:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x10
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->q:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x11
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->r:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x12
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->s:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x13
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->t:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x14
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->u:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x15
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->v:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x16
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->w:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x17
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->x:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x18
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->y:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x19
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x1a
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->A:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x1b
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->B:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x1c
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->C:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x1d
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->D:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x1e
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->E:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x1f
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->F:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x20
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->G:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x21
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->H:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x22
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->I:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    const/16 v1, 0x23
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->J:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z00:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z01:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z02:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z03:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z04:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z05:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z06:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z07:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z08:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z09:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z0a:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z0b:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z0c:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z0d:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z0e:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z0f:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z10:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z11:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z12:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z13:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z14:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z15:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z16:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z17:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z18:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z19:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z1a:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z1b:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z1c:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z1d:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z1e:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z1f:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z20:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z21:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z22:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z23:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z24:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z25:Ldji/pilot/publics/c/i$b;
++
++    aput-object v2, v0, v1
++
++    sput-object v0, Ldji/pilot/publics/c/i$b;->M:[Ldji/pilot/publics/c/i$b;
++
++    const/16 v1, 0x24
++
++    sget-object v2, Ldji/pilot/publics/c/i$b;->z26:Ldji/pilot/publics/c/i$b;
+ 
+     aput-object v2, v0, v1
+ 
