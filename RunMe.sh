@@ -311,7 +311,7 @@ fi
 
 if [ "$patch_step" = "true" ] || [ "$patch_step" = "y" ] || [ "$patch_step" = "1" ]
 then
-    ./patch_apk.sh "$workdir" "$timestamp"
+    ./patch_apk.sh "$workdir" "$timestamp" true
 fi
 
 if [ "$clone_step" = "true" ] || [ "$clone_step" = "y" ] || [ "$clone_step" = "1" ]
