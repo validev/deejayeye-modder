@@ -97,3 +97,6 @@ brings back the option to disable downwards VPS Sensors on Spark
 
 enableLEDSwitchOnSpark
 Enables dark mode on Spark. Fly responsibly.
+
+addAltitudeVoiceOutput
+Added speech samples for altitude announcements up to 3000m
