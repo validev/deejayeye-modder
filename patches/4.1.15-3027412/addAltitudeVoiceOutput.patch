@@ -162,8 +162,8 @@ diff -Naur orig/smali/dji/midware/data/model/P3/DataOsdGetPushCommon.smali mod/s
 --- orig/smali/dji/midware/data/model/P3/DataOsdGetPushCommon.smali	2018-06-01 20:14:02.721008800 +0200
 +++ mod/smali/dji/midware/data/model/P3/DataOsdGetPushCommon.smali	2019-08-19 12:05:41.801360000 +0200
 @@ -27,6 +27,11 @@
-# static fields
-.field private static instance:Ldji/midware/data/model/P3/DataOsdGetPushCommon;
+ # static fields
+ .field private static instance:Ldji/midware/data/model/P3/DataOsdGetPushCommon;
 
 +.field private static adjusted_altitude:I
 +
@@ -171,22 +171,22 @@ diff -Naur orig/smali/dji/midware/data/model/P3/DataOsdGetPushCommon.smali mod/s
 +
 +.field private static mediaPlayer:Landroid/media/MediaPlayer;
 
-# direct methods
-.method static constructor <clinit>()V
+ # direct methods
+ .method static constructor <clinit>()V
 @@ -38,6 +43,10 @@
 
-    sput-object v0, Ldji/midware/data/model/P3/DataOsdGetPushCommon;->instance:Ldji/midware/data/model/P3/DataOsdGetPushCommon;
+     sput-object v0, Ldji/midware/data/model/P3/DataOsdGetPushCommon;->instance:Ldji/midware/data/model/P3/DataOsdGetPushCommon;
 
 +    sput v0, Ldji/midware/data/model/P3/DataOsdGetPushCommon;->adjusted_altitude:I
 +
 +    sput v0, Ldji/midware/data/model/P3/DataOsdGetPushCommon;->last_sector:I
 +
-    return-void
-.end method
+     return-void
+ .end method
 
 @@ -562,6 +571,132 @@
-    return v0
-.end method
+     return v0
+ .end method
 
 +.method public static adjust_altitude(I)I
 +    .registers 7
@@ -314,12 +314,12 @@ diff -Naur orig/smali/dji/midware/data/model/P3/DataOsdGetPushCommon.smali mod/s
 +    goto :goto_19
 +.end method
 +
-.method public getHeight()I
-    .locals 3
+ .method public getHeight()I
+     .locals 3
 
 @@ -583,6 +718,12 @@
 
-    move-result v0
+     move-result v0
 
 +    invoke-static {v0}, Ldji/midware/data/model/P3/DataOsdGetPushCommon;->adjust_altitude(I)I
 +
@@ -327,13 +327,13 @@ diff -Naur orig/smali/dji/midware/data/model/P3/DataOsdGetPushCommon.smali mod/s
 +
 +    invoke-static {}, Ldji/midware/data/model/P3/DataOsdGetPushCommon;->playHeightVoiceSample()V
 +
-    return v0
-.end method
+     return v0
+ .end method
 
 @@ -2031,3 +2172,770 @@
-    .line 36
-    return-void
-.end method
+     .line 36
+     return-void
+ .end method
 +
 +.method public static playHeightVoiceSample()V
 +    .registers 6
@@ -1106,7 +1106,7 @@ diff -Naur orig/smali_classes4/dji/pilot/R$raw.smali mod/smali_classes4/dji/pilo
 +++ mod/smali_classes4/dji/pilot/R$raw.smali	2019-08-18 13:25:01.844457200 +0200
 @@ -359,6 +359,171 @@
 
-.field public static final video_voice:I = 0x7f0800ab
+ .field public static final video_voice:I = 0x7f0800ab
 
 +.field public static final tips_10_meters:I = 0x7f080100
 +
@@ -1274,5 +1274,5 @@ diff -Naur orig/smali_classes4/dji/pilot/R$raw.smali mod/smali_classes4/dji/pilo
 +
 +.field public static final tips_minus_3000_meters:I = 0x7f080226
 
-# direct methods
-.method public constructor <init>()V
+ # direct methods
+ .method public constructor <init>()V
