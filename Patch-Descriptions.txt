@@ -94,3 +94,6 @@ brings back the option to disable RTH Obstacle Detection and thus the possibilit
 
 enableVPSSwitchOnSpark:
 brings back the option to disable downwards VPS Sensors on Spark
+
+enableLEDSwitchOnSpark
+Enables dark mode on Spark. Fly responsibly.
