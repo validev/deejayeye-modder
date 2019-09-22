@@ -100,3 +100,7 @@ Enables dark mode on Spark. Fly responsibly.
 
 addAltitudeVoiceOutput
 Added speech samples for altitude announcements up to 3000m
+
+enableVoltageDisplayOnSpark
+Enables little voltage display on all devices
+
