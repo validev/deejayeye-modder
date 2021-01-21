@@ -104,3 +104,5 @@ Added speech samples for altitude announcements up to 3000m
 enableVoltageDisplayOnSpark
 Enables little voltage display on all devices
 
+clearSwitch:
+sets all privacy bits to zero, plus some more stuff to disable identification

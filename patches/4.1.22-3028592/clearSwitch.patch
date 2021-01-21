@@ -1,0 +1,114 @@
+diff -Naur orig/smali/dji/midware/data/model/P3/DataFlycDetection.smali mod/smali/dji/midware/data/model/P3/DataFlycDetection.smali
+--- orig/smali/dji/midware/data/model/P3/DataFlycDetection.smali	2018-04-11 12:06:23.329365513 +0200
++++ mod/smali/dji/midware/data/model/P3/DataFlycDetection.smali	2021-01-21 21:57:36.518531603 +0100
+@@ -1375,7 +1375,7 @@
+     .line 612
+     iget-object v0, p0, Ldji/midware/data/model/P3/DataFlycDetection;->_sendData:[B
+ 
+-    const/16 v1, 0xa
++    const/16 v1, 0x0
+ 
+     aput-byte v1, v0, v5
+ 
+@@ -1558,11 +1558,7 @@
+     .line 618
+     iget-object v2, p0, Ldji/midware/data/model/P3/DataFlycDetection;->_sendData:[B
+ 
+-    array-length v3, v0
+-
+-    add-int/lit8 v3, v3, 0xa
+-
+-    int-to-byte v3, v3
++    const/16 v3, 0x0
+ 
+     aput-byte v3, v2, v5
+ 
+@@ -1613,19 +1609,6 @@
+ 
+     if-ne v0, v2, :cond_7
+ 
+-    .line 640
+-    iget-object v0, p0, Ldji/midware/data/model/P3/DataFlycDetection;->i:Ljava/lang/String;
+-
+-    if-eqz v0, :cond_5
+-
+-    iget-object v0, p0, Ldji/midware/data/model/P3/DataFlycDetection;->i:Ljava/lang/String;
+-
+-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_6
+-
+     .line 641
+     :cond_5
+     new-array v0, v6, [B
+@@ -1736,19 +1719,6 @@
+ 
+     if-ne v0, v2, :cond_b
+ 
+-    .line 656
+-    iget-object v0, p0, Ldji/midware/data/model/P3/DataFlycDetection;->j:Ljava/lang/String;
+-
+-    if-eqz v0, :cond_9
+-
+-    iget-object v0, p0, Ldji/midware/data/model/P3/DataFlycDetection;->j:Ljava/lang/String;
+-
+-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_a
+-
+     .line 657
+     :cond_9
+     new-array v0, v6, [B
+@@ -1971,9 +1941,7 @@
+ 
+     add-int/lit8 v3, v1, 0x1
+ 
+-    and-int/lit16 v4, v2, 0xff
+-
+-    int-to-byte v4, v4
++    const/16 v4, 0x0
+ 
+     aput-byte v4, v0, v3
+ 
+@@ -2325,12 +2293,6 @@
+     invoke-static {v0, v1, v2, v5, v3}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+ 
+     .line 727
+-    iget v0, p0, Ldji/midware/data/model/P3/DataFlycDetection;->l:I
+-
+-    invoke-static {v0}, Ldji/midware/l/c;->a(I)[B
+-
+-    move-result-object v0
+-
+     iget-object v2, p0, Ldji/midware/data/model/P3/DataFlycDetection;->_sendData:[B
+ 
+     const/16 v3, 0x9
+@@ -2338,12 +2300,6 @@
+     invoke-static {v0, v1, v2, v3, v8}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+ 
+     .line 728
+-    iget v0, p0, Ldji/midware/data/model/P3/DataFlycDetection;->m:I
+-
+-    invoke-static {v0}, Ldji/midware/l/c;->a(I)[B
+-
+-    move-result-object v0
+-
+     iget-object v2, p0, Ldji/midware/data/model/P3/DataFlycDetection;->_sendData:[B
+ 
+     const/16 v3, 0xd
+diff -Naur orig/smali_classes6/dji/setting/ui/flyc/identify/a.smali mod/smali_classes6/dji/setting/ui/flyc/identify/a.smali
+--- orig/smali_classes6/dji/setting/ui/flyc/identify/a.smali	2018-04-11 12:06:33.353591166 +0200
++++ mod/smali_classes6/dji/setting/ui/flyc/identify/a.smali	2021-01-21 18:36:34.541056388 +0100
+@@ -133,7 +133,7 @@
+     if-ge v0, v2, :cond_0
+ 
+     .line 110
+-    const/4 v4, 0x1
++    const/4 v4, 0x0
+ 
+     aput-boolean v4, v3, v0
+ 
