@@ -1,0 +1,12 @@
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2018-06-01 20:18:21.137408800 +0200
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2021-01-23 13:51:29.736302700 +0100
+@@ -49,7 +49,7 @@
+     .locals 2
+ 
+     .prologue
+-    const/16 v1, 0x8
++    const/16 v1, 0x0
+ 
+     .line 53
+     invoke-static {}, Ldji/setting/ui/hd/a;->b()Z
