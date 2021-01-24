@@ -150,8 +150,8 @@ diff -Naur orig/smali_classes6/dji/pilot/setting/ui/R$id.smali mod/smali_classes
  .field public static final setting_hd_hd_switch:I = 0x7f0c1023
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smali	2018-06-01 20:18:21.137408800 +0200
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smali	2021-01-24 14:43:36.358461000 +0100
-@@ -37,78 +37,58 @@
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smali	2021-01-24 17:54:41.498843300 +0100
+@@ -37,78 +37,55 @@
  
  # virtual methods
  .method public onFailure(Ldji/midware/data/config/P3/a;)V
@@ -161,26 +161,25 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smal
      .prologue
      .line 174
 -    invoke-static {}, Ldji/log/DJILogHelper;->getInstance()Ldji/log/DJILogHelper;
--
++    const-string v0, "SdrTransAjustParamView"
+ 
 -    move-result-object v0
--
++    const-string v1, "SDR Assistant read fail"
+ 
 -    const-string v1, ""
 -
 -    const-string v2, "cwBjaE10czc9WGkDFC0wEDhEPWI1OzgAeUwoKws="
-+    const-string v0, "SdrTransAjustParamView"
- 
+-
 -    invoke-static {v2}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
-+    const-string v1, "*******Sdr Assitant Read fail"
- 
+-
 -    move-result-object v2
 -
 -    const/4 v3, 0x0
-+    invoke-static {}, Ldji/log/DJILogHelper;->getInstance()Ldji/log/DJILogHelper;
- 
+-
 -    const/4 v4, 0x1
-+    move-result-object v0
- 
+-
 -    invoke-virtual {v0, v1, v2, v3, v4}, Ldji/log/DJILogHelper;->LOGE(Ljava/lang/String;Ljava/lang/String;ZZ)V
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
  
      .line 175
      return-void
@@ -193,26 +192,26 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smal
      .prologue
      .line 163
 -    invoke-static {}, Ldji/log/DJILogHelper;->getInstance()Ldji/log/DJILogHelper;
- 
+-
 -    move-result-object v0
--
+ 
 -    const-string v1, ""
--
--    new-instance v2, Ljava/lang/StringBuilder;
 +    const-string v0, "SdrTransAjustParamView"
  
--    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+-    new-instance v2, Ljava/lang/StringBuilder;
 +    new-instance v1, Ljava/lang/StringBuilder;
  
--    const-string v3, "cwBjaE10czc9WGkDFC0wEDhEPWI1OzgAeVk8IQQ7Khd5Bj8jCys8RGQK"
+-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 +    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
  
--    invoke-static {v3}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
-+    const-string v2, "*******Sdr Assitant Read success ,value = "
+-    const-string v3, "cwBjaE10czc9WGkDFC0wEDhEPWI1OzgAeVk8IQQ7Khd5Bj8jCys8RGQK"
++    const-string v2, "SDR Assistant read success, value = "
  
--    move-result-object v3
+-    invoke-static {v3}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
 +    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
  
+-    move-result-object v3
+-
 -    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 -
 -    move-result-object v2
@@ -223,19 +222,19 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smal
 -    move-result-object v3
 -
 -    invoke-virtual {v3}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantRead;->a()I
+-
+-    move-result v3
 +    move-result-object v2
  
--    move-result v3
+-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 +    invoke-virtual {v2}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantRead;->a()I
  
--    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+-    move-result-object v2
 +    move-result v2
  
--    move-result-object v2
+-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 +    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
  
--    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
--
 -    move-result-object v2
 +    move-result-object v1
  
@@ -252,7 +251,7 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$1$1.smal
      iget-object v0, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$1$1;->a:Ldji/setting/ui/hd/SdrTransAjustParamView$1;
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smali	2018-06-01 20:18:21.137408800 +0200
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smali	2021-01-24 14:43:36.358461000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smali	2021-01-24 17:54:41.498843300 +0100
 @@ -37,78 +37,54 @@
  
  # virtual methods
@@ -266,7 +265,7 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smal
 +    const-string v0, "SdrTransAjustParamView"
  
 -    move-result-object v0
-+    const-string v1, "*******Sdr Assitant write fail"
++    const-string v1, "SDR Assistant write fail"
  
 -    const-string v1, ""
 -
@@ -305,7 +304,7 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smal
 +    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
  
 -    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-+    const-string v2, "*******Sdr Assitant write success ,result = "
++    const-string v2, "SDR Assistant write success, result = "
  
 -    const-string v3, "cwBjaE10czc9WGkDFC0wEDhEPWIQLDAQPAo6NwQ9PBcqCmUwAi0sCC0KdGI="
 +    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -351,7 +350,7 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$2$1.smal
      return-void
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali	2018-06-01 20:18:21.137408800 +0200
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali	2021-01-24 14:43:36.358461000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali	2021-01-24 17:54:41.498843300 +0100
 @@ -45,13 +45,9 @@
  
      .prologue
@@ -364,13 +363,13 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali 
 -    invoke-static {v1}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
 -
 -    move-result-object v1
-+    const-string v1, "assitant close in"
++    const-string v1, "Assistant close"
  
      invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
  
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4$1.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4$1.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4$1.smali	1970-01-01 01:00:00.000000000 +0100
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4$1.smali	2021-01-24 14:43:36.358461000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4$1.smali	2021-01-24 17:54:41.498843300 +0100
 @@ -0,0 +1,68 @@
 +.class Ldji/setting/ui/hd/SdrTransAjustParamView$4$1;
 +.super Ljava/lang/Object;
@@ -417,7 +416,7 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4$1.smal
 +    .line 261
 +    const-string v0, "SdrTransAjustParamView"
 +
-+    const-string v1, "Error setting SDR Boost"
++    const-string v1, "Error setting SDR boost"
 +
 +    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 +
@@ -433,16 +432,16 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4$1.smal
 +
 +    const-string v0, "SdrTransAjustParamView"
 +
-+    const-string v1, "Success setting SDR Boost"
++    const-string v1, "Success setting SDR boost"
 +
-+   invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 +
 +    .line 257
 +    return-void
 +.end method
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali	1970-01-01 01:00:00.000000000 +0100
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali	2021-01-24 14:43:36.358461000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali	2021-01-24 17:54:41.498843300 +0100
 @@ -0,0 +1,61 @@
 +.class Ldji/setting/ui/hd/SdrTransAjustParamView$4;
 +.super Ljava/lang/Object;
@@ -489,7 +488,7 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali 
 +
 +    const-string v0, "SdrTransAjustParamView"
 +
-+    const-string v1, "Set SDR to Boost Mode"
++    const-string v1, "Set SDR to boost mode"
 +
 +    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 +
@@ -505,10 +504,82 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali 
 +
 +    return-void
 +.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5$1.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5$1.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5$1.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5$1.smali	2021-01-24 17:54:41.498843300 +0100
+@@ -0,0 +1,68 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$5$1;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Ldji/midware/e/d;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView$5;->onClick(Landroid/view/View;)V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView$5;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView$5;)V
++    .locals 0
++
++    .prologue
++    .line 252
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$5$1;->a:Ldji/setting/ui/hd/SdrTransAjustParamView$5;
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onFailure(Ldji/midware/data/config/P3/a;)V
++    .locals 2
++
++    .prologue
++    .line 261
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Error setting SDR CE"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 262
++    return-void
++.end method
++
++.method public onSuccess(Ljava/lang/Object;)V
++    .locals 2
++
++    .prologue
++    .line 256
++
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Success setting SDR CE"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 257
++    return-void
++.end method
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali	1970-01-01 01:00:00.000000000 +0100
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali	2021-01-24 14:43:36.358461000 +0100
-@@ -0,0 +1,51 @@
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali	2021-01-24 17:54:41.498843300 +0100
+@@ -0,0 +1,85 @@
 +.class Ldji/setting/ui/hd/SdrTransAjustParamView$5;
 +.super Ljava/lang/Object;
 +.source "SourceFile"
@@ -554,16 +625,122 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali 
 +
 +    const-string v0, "SdrTransAjustParamView"
 +
-+    const-string v1, "Set SDR to CE Mode"
++    const-string v1, "Set SDR to CE mode"
 +
 +    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 +
++    # clear flags for 2.3/2.5GHz preset
++#    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++#    move-result-object v0
++
++#    invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->e()V
++
++    # load FCC preset
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->a()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    # change preset to CE
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    const/4 v1, 0x1
++
++    invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->b(I)Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    # start write
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$5$1;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$5$1;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView$5;)V
++
++    invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->start(Ldji/midware/e/d;)V
++
++    return-void
++.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6$1.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6$1.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6$1.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6$1.smali	2021-01-24 17:54:41.498843300 +0100
+@@ -0,0 +1,68 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$6$1;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Ldji/midware/e/d;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView$6;->onClick(Landroid/view/View;)V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView$6;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView$6;)V
++    .locals 0
++
++    .prologue
++    .line 252
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$6$1;->a:Ldji/setting/ui/hd/SdrTransAjustParamView$6;
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onFailure(Ldji/midware/data/config/P3/a;)V
++    .locals 2
++
++    .prologue
++    .line 261
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Error setting SDR FCC"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 262
++    return-void
++.end method
++
++.method public onSuccess(Ljava/lang/Object;)V
++    .locals 2
++
++    .prologue
++    .line 256
++
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Success setting SDR FCC"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 257
 +    return-void
 +.end method
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali	1970-01-01 01:00:00.000000000 +0100
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali	2021-01-24 14:43:36.358461000 +0100
-@@ -0,0 +1,51 @@
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali	2021-01-24 17:54:41.514472600 +0100
+@@ -0,0 +1,76 @@
 +.class Ldji/setting/ui/hd/SdrTransAjustParamView$6;
 +.super Ljava/lang/Object;
 +.source "SourceFile"
@@ -609,16 +786,113 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali 
 +
 +    const-string v0, "SdrTransAjustParamView"
 +
-+    const-string v1, "Set SDR to FCC Mode"
++    const-string v1, "Set SDR to FCC mode"
 +
 +    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 +
++    # clear flags for 2.3/2.5GHz preset
++#    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++#    move-result-object v0
++
++#    invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->e()V
++
++    # load FCC preset
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->a()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    # start write
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$6$1;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$6$1;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView$6;)V
++
++    invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->start(Ldji/midware/e/d;)V
++
++    return-void
++.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7$1.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7$1.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7$1.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7$1.smali	2021-01-24 17:54:41.514472600 +0100
+@@ -0,0 +1,68 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$7$1;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Ldji/midware/e/d;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView$7;->onClick(Landroid/view/View;)V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView$7;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView$7;)V
++    .locals 0
++
++    .prologue
++    .line 252
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$7$1;->a:Ldji/setting/ui/hd/SdrTransAjustParamView$7;
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onFailure(Ldji/midware/data/config/P3/a;)V
++    .locals 2
++
++    .prologue
++    .line 261
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Error setting SDR 2.3 GHz"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 262
++    return-void
++.end method
++
++.method public onSuccess(Ljava/lang/Object;)V
++    .locals 2
++
++    .prologue
++    .line 256
++
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Success setting SDR 2.3 GHz"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 257
 +    return-void
 +.end method
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali	1970-01-01 01:00:00.000000000 +0100
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali	2021-01-24 14:43:36.358461000 +0100
-@@ -0,0 +1,51 @@
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali	2021-01-24 17:54:41.514472600 +0100
+@@ -0,0 +1,76 @@
 +.class Ldji/setting/ui/hd/SdrTransAjustParamView$7;
 +.super Ljava/lang/Object;
 +.source "SourceFile"
@@ -664,16 +938,113 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali 
 +
 +    const-string v0, "SdrTransAjustParamView"
 +
-+    const-string v1, "Set SDR to 2.3 GHz Mode"
++    const-string v1, "Set SDR to 2.3 GHz mode"
 +
 +    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 +
++    # clear flags for 2.3/2.5GHz preset
++#    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++#    move-result-object v0
++
++ #   invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->e()V
++
++    # select 2.3GHz preset
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->b()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    # start write
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$7$1;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$7$1;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView$7;)V
++
++    invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->start(Ldji/midware/e/d;)V
++
++    return-void
++.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8$1.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8$1.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8$1.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8$1.smali	2021-01-24 17:54:41.514472600 +0100
+@@ -0,0 +1,68 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$8$1;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Ldji/midware/e/d;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView$8;->onClick(Landroid/view/View;)V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView$8;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView$8;)V
++    .locals 0
++
++    .prologue
++    .line 252
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$8$1;->a:Ldji/setting/ui/hd/SdrTransAjustParamView$8;
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onFailure(Ldji/midware/data/config/P3/a;)V
++    .locals 2
++
++    .prologue
++    .line 261
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Error setting SDR 2.5 GHz"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 262
++    return-void
++.end method
++
++.method public onSuccess(Ljava/lang/Object;)V
++    .locals 2
++
++    .prologue
++    .line 256
++
++    const-string v0, "SdrTransAjustParamView"
++
++    const-string v1, "Success setting SDR 2.5 GHz"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 257
 +    return-void
 +.end method
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali	1970-01-01 01:00:00.000000000 +0100
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali	2021-01-24 14:43:36.358461000 +0100
-@@ -0,0 +1,51 @@
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali	2021-01-24 17:54:41.514472600 +0100
+@@ -0,0 +1,76 @@
 +.class Ldji/setting/ui/hd/SdrTransAjustParamView$8;
 +.super Ljava/lang/Object;
 +.source "SourceFile"
@@ -719,15 +1090,40 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali 
 +
 +    const-string v0, "SdrTransAjustParamView"
 +
-+    const-string v1, "Set SDR to 2.5 GHz Mode"
++    const-string v1, "Set SDR to 2.5 GHz mode"
 +
 +    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    # clear flags for 2.3/2.5GHz preset
++#    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++#    move-result-object v0
++
++#    invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->e()V
++
++    # select 2.5GHz preset
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->c()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    # start write
++    invoke-static {}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->getInstance()Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;
++
++    move-result-object v0
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$8$1;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$8$1;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView$8;)V
++
++    invoke-virtual {v0, v1}, Ldji/midware/data/model/P3/DataOsdSetSdrAssitantWrite;->start(Ldji/midware/e/d;)V
 +
 +    return-void
 +.end method
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2018-06-01 20:18:21.137408800 +0200
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2021-01-24 14:43:36.374050100 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2021-01-24 17:54:41.514472600 +0100
 @@ -49,7 +49,7 @@
      .locals 2
  
