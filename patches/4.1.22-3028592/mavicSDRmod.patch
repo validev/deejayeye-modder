@@ -1,6 +1,6 @@
 diff -Naur orig/res/layout/setting_hd_assitant_dlg_view.xml mod/res/layout/setting_hd_assitant_dlg_view.xml
 --- orig/res/layout/setting_hd_assitant_dlg_view.xml	2018-06-01 20:16:03.513166300 +0200
-+++ mod/res/layout/setting_hd_assitant_dlg_view.xml	2021-01-23 14:54:28.444275700 +0100
++++ mod/res/layout/setting_hd_assitant_dlg_view.xml	2021-01-23 22:16:37.587246800 +0100
 @@ -5,23 +5,23 @@
          <ImageView android:id="@id/dlg_titlebar_close_img" android:padding="@dimen/dp_10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/fpv_playback_deletecancel_btn" android:scaleType="fitXY" android:adjustViewBounds="true" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:contentDescription="@string/app_name" />
      </dji.publics.DJIUI.DJIRelativeLayout>
@@ -32,7 +32,7 @@ diff -Naur orig/res/layout/setting_hd_assitant_dlg_view.xml mod/res/layout/setti
          <RadioGroup android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/fpv_hd_assitant_data_rg" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="70.0dip" android:layout_centerVertical="true">
              <dji.publics.DJIUI.DJIRadioButton android:textColor="@color/white" android:id="@id/fpv_hd_assitant_data_int_radio" android:paddingLeft="5.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:checked="true" android:button="@drawable/selector_radiobutton" android:text="Int" android:singleLine="false" />
              <dji.publics.DJIUI.DJIRadioButton android:textColor="@color/white" android:id="@id/fpv_hd_assitant_data_short_radio" android:paddingLeft="10.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="5.0dip" android:button="@drawable/selector_radiobutton" android:text="Short" android:singleLine="false" />
-@@ -29,13 +29,13 @@
+@@ -29,13 +29,20 @@
          </RadioGroup>
      </dji.publics.DJIUI.DJIRelativeLayout>
      <dji.publics.DJIUI.DJIRelativeLayout android:layout_gravity="center" android:layout_width="fill_parent" android:layout_height="@dimen/dp_40" android:layout_marginTop="10.0dip">
@@ -48,12 +48,400 @@ diff -Naur orig/res/layout/setting_hd_assitant_dlg_view.xml mod/res/layout/setti
          <EditText android:id="@id/fpv_hd_assitant_value_et" android:background="@drawable/edittext_bg_normal" android:layout_width="150.0dip" android:layout_height="fill_parent" android:layout_marginLeft="80.0dip" android:digits="0123456789abcdefABCDEF" phantom:djiTextFace="nbold" style="@style/setting_assistant_edt" />
 -        <Button android:textColor="@color/black_light" android:gravity="center" android:id="@id/setting_hd_assitant_write_tv" android:paddingLeft="@dimen/dp_14" android:paddingRight="@dimen/dp_14" android:layout_width="60.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" android:text="写" android:layout_toRightOf="@id/fpv_hd_assitant_value_et" android:layout_centerVertical="true" phantom:djiTextFace="nbold" />
 +        <Button android:textColor="@color/black_light" android:gravity="center" android:id="@id/setting_hd_assitant_write_tv" android:paddingLeft="@dimen/dp_14" android:paddingRight="@dimen/dp_14" android:layout_width="80.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" android:text="Write" android:layout_toRightOf="@id/fpv_hd_assitant_value_et" android:layout_centerVertical="true" phantom:djiTextFace="nbold" />
++    </dji.publics.DJIUI.DJIRelativeLayout>
++    <dji.publics.DJIUI.DJIRelativeLayout android:layout_gravity="center" android:layout_width="fill_parent" android:layout_height="@dimen/dp_40" android:layout_marginTop="10.0dip">
++        <Button android:textColor="@color/black_light" android:gravity="center" android:id="@id/setting_hd_assitant_enable_boost" android:paddingLeft="@dimen/dp_14" android:paddingRight="@dimen/dp_14" android:layout_width="80.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" android:text="Boost" android:layout_centerVertical="true" phantom:djiTextFace="nbold" />
++        <Button android:textColor="@color/black_light" android:gravity="center" android:id="@id/setting_hd_assitant_set_ce" android:paddingLeft="@dimen/dp_14" android:paddingRight="@dimen/dp_14" android:layout_width="80.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" android:text="CE" android:layout_toRightOf="@id/setting_hd_assitant_enable_boost" android:layout_centerVertical="true" phantom:djiTextFace="nbold" />
++        <Button android:textColor="@color/black_light" android:gravity="center" android:id="@id/setting_hd_assitant_set_fcc" android:paddingLeft="@dimen/dp_14" android:paddingRight="@dimen/dp_14" android:layout_width="80.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" android:text="FCC" android:layout_toRightOf="@id/setting_hd_assitant_set_ce" android:layout_centerVertical="true" phantom:djiTextFace="nbold" />
++        <Button android:textColor="@color/black_light" android:gravity="center" android:id="@id/setting_hd_assitant_set_23ghz" android:paddingLeft="@dimen/dp_14" android:paddingRight="@dimen/dp_14" android:layout_width="80.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" android:text="2.3 GHz" android:layout_toRightOf="@id/setting_hd_assitant_set_fcc" android:layout_centerVertical="true" phantom:djiTextFace="nbold" />
++        <Button android:textColor="@color/black_light" android:gravity="center" android:id="@id/setting_hd_assitant_set_25ghz" android:paddingLeft="@dimen/dp_14" android:paddingRight="@dimen/dp_14" android:layout_width="80.0dip" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" android:text="2.5 GHz" android:layout_toRightOf="@id/setting_hd_assitant_set_23ghz" android:layout_centerVertical="true" phantom:djiTextFace="nbold" />
      </dji.publics.DJIUI.DJIRelativeLayout>
  </dji.publics.DJIUI.DJILinearLayout>
 \ No newline at end of file
+diff -Naur orig/res/values/ids.xml mod/res/values/ids.xml
+--- orig/res/values/ids.xml	2018-06-01 20:16:21.198483400 +0200
++++ mod/res/values/ids.xml	2021-01-23 20:27:24.125321800 +0100
+@@ -3733,6 +3733,11 @@
+     <item type="id" name="geo_tip_cancel">false</item>
+     <item type="id" name="setting_hd_assitant_read_tv">false</item>
+     <item type="id" name="setting_hd_assitant_write_tv">false</item>
++    <item type="id" name="setting_hd_assitant_enable_boost">false</item>
++    <item type="id" name="setting_hd_assitant_set_ce">false</item>
++    <item type="id" name="setting_hd_assitant_set_fcc">false</item>
++    <item type="id" name="setting_hd_assitant_set_23ghz">false</item>
++    <item type="id" name="setting_hd_assitant_set_25ghz">false</item>
+     <item type="id" name="setting_number_input_dialog_np">false</item>
+     <item type="id" name="setting_number_input_tx">false</item>
+     <item type="id" name="setting_ui_root_btn_flyc">false</item>
+diff -Naur orig/res/values/public.xml mod/res/values/public.xml
+--- orig/res/values/public.xml	2018-06-01 20:16:21.730204300 +0200
++++ mod/res/values/public.xml	2021-01-23 20:31:24.213397300 +0100
+@@ -23497,6 +23497,11 @@
+     <public type="id" name="geo_tip_cancel" id="0x7f0c0efa" />
+     <public type="id" name="setting_hd_assitant_read_tv" id="0x7f0c0efb" />
+     <public type="id" name="setting_hd_assitant_write_tv" id="0x7f0c0efc" />
++    <public type="id" name="setting_hd_assitant_enable_boost" id="0x7f0c1867" />
++    <public type="id" name="setting_hd_assitant_set_ce" id="0x7f0c1868" />
++    <public type="id" name="setting_hd_assitant_set_fcc" id="0x7f0c1869" />
++    <public type="id" name="setting_hd_assitant_set_23ghz" id="0x7f0c186a" />
++    <public type="id" name="setting_hd_assitant_set_25ghz" id="0x7f0c186b" />
+     <public type="id" name="setting_number_input_dialog_np" id="0x7f0c0efd" />
+     <public type="id" name="setting_number_input_tx" id="0x7f0c0efe" />
+     <public type="id" name="setting_ui_root_btn_flyc" id="0x7f0c0eff" />
+diff -Naur orig/smali_classes4/dji/pilot/R$id.smali mod/smali_classes4/dji/pilot/R$id.smali
+--- orig/smali_classes4/dji/pilot/R$id.smali	2018-06-01 20:17:45.572142000 +0200
++++ mod/smali_classes4/dji/pilot/R$id.smali	2021-01-23 20:39:33.688033100 +0100
+@@ -9153,6 +9153,16 @@
+ 
+ .field public static final setting_hd_assitant_write_tv:I = 0x7f0c0efc
+ 
++.field public static final setting_hd_assitant_enable_boost:I = 0x7f0c1867
++
++.field public static final setting_hd_assitant_set_ce:I = 0x7f0c1868
++
++.field public static final setting_hd_assitant_set_fcc:I = 0x7f0c1869
++
++.field public static final setting_hd_assitant_set_23ghz:I = 0x7f0c186a
++
++.field public static final setting_hd_assitant_set_25ghz:I = 0x7f0c186b
++
+ .field public static final setting_hd_band_width_select:I = 0x7f0c1022
+ 
+ .field public static final setting_hd_hd_switch:I = 0x7f0c1023
+diff -Naur orig/smali_classes5/dji/pilot/dji_groundstation/R$id.smali mod/smali_classes5/dji/pilot/dji_groundstation/R$id.smali
+--- orig/smali_classes5/dji/pilot/dji_groundstation/R$id.smali	2018-06-01 20:17:46.697093300 +0200
++++ mod/smali_classes5/dji/pilot/dji_groundstation/R$id.smali	2021-01-23 20:43:50.282630300 +0100
+@@ -1813,6 +1813,16 @@
+ 
+ .field public static final setting_hd_assitant_write_tv:I = 0x7f0c0efc
+ 
++.field public static final setting_hd_assitant_enable_boost:I = 0x7f0c1867
++
++.field public static final setting_hd_assitant_set_ce:I = 0x7f0c1868
++
++.field public static final setting_hd_assitant_set_fcc:I = 0x7f0c1869
++
++.field public static final setting_hd_assitant_set_23ghz:I = 0x7f0c186a
++
++.field public static final setting_hd_assitant_set_25ghz:I = 0x7f0c186b
++
+ .field public static final setting_hd_band_width_select:I = 0x7f0c1022
+ 
+ .field public static final setting_hd_hd_switch:I = 0x7f0c1023
+diff -Naur orig/smali_classes6/dji/pilot/setting/ui/R$id.smali mod/smali_classes6/dji/pilot/setting/ui/R$id.smali
+--- orig/smali_classes6/dji/pilot/setting/ui/R$id.smali	2018-06-01 20:18:02.477991200 +0200
++++ mod/smali_classes6/dji/pilot/setting/ui/R$id.smali	2021-01-23 20:45:28.518586800 +0100
+@@ -1577,6 +1577,16 @@
+ 
+ .field public static final setting_hd_assitant_write_tv:I = 0x7f0c0efc
+ 
++.field public static final setting_hd_assitant_enable_boost:I = 0x7f0c1867
++
++.field public static final setting_hd_assitant_set_ce:I = 0x7f0c1868
++
++.field public static final setting_hd_assitant_set_fcc:I = 0x7f0c1869
++
++.field public static final setting_hd_assitant_set_23ghz:I = 0x7f0c186a
++
++.field public static final setting_hd_assitant_set_25ghz:I = 0x7f0c186b
++
+ .field public static final setting_hd_band_width_select:I = 0x7f0c1022
+ 
+ .field public static final setting_hd_hd_switch:I = 0x7f0c1023
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali	2018-06-01 20:18:21.137408800 +0200
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$3.smali	2021-01-23 22:08:31.539671600 +0100
+@@ -47,11 +47,7 @@
+     .line 272
+     const-string v0, ""
+ 
+-    const-string v1, "OFk6KxM/NxB5SSUtFDt5DTc="
+-
+-    invoke-static {v1}, Lcom/dji/f/a/a/b;->a(Ljava/lang/String;)Ljava/lang/String;
+-
+-    move-result-object v1
++    const-string v1, "assitant close in"
+ 
+     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+ 
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$4.smali	2021-01-23 22:08:31.540670600 +0100
+@@ -0,0 +1,51 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$4;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Landroid/view/View$OnClickListener;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView;->b()V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++    .locals 0
++
++    .prologue
++
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$4;->a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onClick(Landroid/view/View;)V
++    .locals 2
++
++    .prologue
++
++    const-string v0, ""
++
++    const-string v1, "Set SDR to Boost Mode"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    return-void
++.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$5.smali	2021-01-23 22:08:31.541670700 +0100
+@@ -0,0 +1,51 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$5;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Landroid/view/View$OnClickListener;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView;->b()V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++    .locals 0
++
++    .prologue
++
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$5;->a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onClick(Landroid/view/View;)V
++    .locals 2
++
++    .prologue
++
++    const-string v0, ""
++
++    const-string v1, "Set SDR to CE Mode"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    return-void
++.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$6.smali	2021-01-23 22:08:31.542671400 +0100
+@@ -0,0 +1,51 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$6;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Landroid/view/View$OnClickListener;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView;->b()V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++    .locals 0
++
++    .prologue
++
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$6;->a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onClick(Landroid/view/View;)V
++    .locals 2
++
++    .prologue
++
++    const-string v0, ""
++
++    const-string v1, "Set SDR to FCC Mode"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    return-void
++.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$7.smali	2021-01-23 22:08:31.548668100 +0100
+@@ -0,0 +1,51 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$7;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Landroid/view/View$OnClickListener;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView;->b()V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++    .locals 0
++
++    .prologue
++
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$7;->a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onClick(Landroid/view/View;)V
++    .locals 2
++
++    .prologue
++
++    const-string v0, ""
++
++    const-string v1, "Set SDR to 2.3 GHz Mode"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    return-void
++.end method
+diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali
+--- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali	1970-01-01 01:00:00.000000000 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView$8.smali	2021-01-23 22:08:31.549667500 +0100
+@@ -0,0 +1,51 @@
++.class Ldji/setting/ui/hd/SdrTransAjustParamView$8;
++.super Ljava/lang/Object;
++.source "SourceFile"
++
++# interfaces
++.implements Landroid/view/View$OnClickListener;
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Ldji/setting/ui/hd/SdrTransAjustParamView;->b()V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# instance fields
++.field final synthetic a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++
++# direct methods
++.method constructor <init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++    .locals 0
++
++    .prologue
++
++    iput-object p1, p0, Ldji/setting/ui/hd/SdrTransAjustParamView$8;->a:Ldji/setting/ui/hd/SdrTransAjustParamView;
++
++     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onClick(Landroid/view/View;)V
++    .locals 2
++
++    .prologue
++
++    const-string v0, ""
++
++    const-string v1, "Set SDR to 2.5 GHz Mode"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    return-void
++.end method
 diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali
 --- orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2018-06-01 20:18:21.137408800 +0200
-+++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2021-01-23 13:51:29.736302700 +0100
++++ mod/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali	2021-01-23 22:04:25.081894400 +0100
 @@ -49,7 +49,7 @@
      .locals 2
  
@@ -63,3 +451,85 @@ diff -Naur orig/smali_classes7/dji/setting/ui/hd/SdrTransAjustParamView.smali mo
  
      .line 53
      invoke-static {}, Ldji/setting/ui/hd/a;->b()Z
+@@ -336,6 +336,81 @@
+ 
+     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+ 
++    .line 269
++    sget v0, Ldji/pilot/setting/ui/R$id;->setting_hd_assitant_enable_boost:I
++
++    invoke-virtual {v11, v0}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/Button;
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$4;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$4;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++
++    invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++
++    .line 269
++    sget v0, Ldji/pilot/setting/ui/R$id;->setting_hd_assitant_set_ce:I
++
++    invoke-virtual {v11, v0}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/Button;
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$5;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$5;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++
++    invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++
++    .line 270
++    sget v0, Ldji/pilot/setting/ui/R$id;->setting_hd_assitant_set_fcc:I
++
++    invoke-virtual {v11, v0}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/Button;
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$6;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$6;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++
++    invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++
++    .line 271
++    sget v0, Ldji/pilot/setting/ui/R$id;->setting_hd_assitant_set_23ghz:I
++
++    invoke-virtual {v11, v0}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/Button;
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$7;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$7;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++
++    invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++
++    .line 272
++    sget v0, Ldji/pilot/setting/ui/R$id;->setting_hd_assitant_set_25ghz:I
++
++    invoke-virtual {v11, v0}, Landroid/widget/LinearLayout;->findViewById(I)Landroid/view/View;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/widget/Button;
++
++    new-instance v1, Ldji/setting/ui/hd/SdrTransAjustParamView$8;
++
++    invoke-direct {v1, p0}, Ldji/setting/ui/hd/SdrTransAjustParamView$8;-><init>(Ldji/setting/ui/hd/SdrTransAjustParamView;)V
++
++    invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++
+     .line 277
+     return-void
+ .end method
