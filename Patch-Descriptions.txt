@@ -106,3 +106,6 @@ Enables little voltage display on all devices
 
 clearSwitch:
 sets all privacy bits to zero, plus some more stuff to disable identification
+
+showRPMonMavic:
+Shows motor RPM in FPV view
