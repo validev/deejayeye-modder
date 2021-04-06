@@ -1,0 +1,12 @@
+diff -Naur orig/smali_classes7/dji/setting/ui/tab/TabBatteryNonSmart.smali mod/smali_classes7/dji/setting/ui/tab/TabBatteryNonSmart.smali
+--- orig/smali_classes7/dji/setting/ui/tab/TabBatteryNonSmart.smali	2021-04-05 13:05:09.589229237 +0200
++++ mod/smali_classes7/dji/setting/ui/tab/TabBatteryNonSmart.smali	2021-04-06 18:26:45.256123397 +0200
+@@ -49,7 +49,7 @@
+ 
+     .line 38
+     :cond_1
+-    const/16 v0, 0x8
++    const/16 v0, 0x0
+ 
+     invoke-virtual {p0, v0}, Ldji/setting/ui/tab/TabBatteryNonSmart;->setVisibility(I)V
+ 
