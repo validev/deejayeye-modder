@@ -1,7 +1,7 @@
 diff -Naur orig/res/layout/fpv_whole_attitude_view.xml mod/res/layout/fpv_whole_attitude_view.xml
 --- orig/res/layout/fpv_whole_attitude_view.xml	2018-04-11 12:06:13.137136570 +0200
-+++ mod/res/layout/fpv_whole_attitude_view.xml	2021-02-05 00:26:13.759906850 +0100
-@@ -7,7 +7,11 @@
++++ mod/res/layout/fpv_whole_attitude_view.xml	2021-04-17 00:30:55.600197639 +0200
+@@ -7,7 +7,9 @@
          <dji.publics.DJIUI.DJIImageView android:id="@id/attitude_distance_desc_img" android:background="@drawable/dynamic_home_icon" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="@string/app_name" />
          <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_big_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/attitude_distance_value" android:layout_width="@dimen/dp_100_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" android:layout_toRightOf="@id/attitude_distance_title" phantom:attiTextFace="pirulen" />
          <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:id="@id/attitude_height_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_120_in_sw320dp" android:text="H" android:layout_alignBaseline="@id/attitude_height_value" android:alpha="0.6" phantom:attiTextFace="pirulen" />
@@ -9,14 +9,21 @@ diff -Naur orig/res/layout/fpv_whole_attitude_view.xml mod/res/layout/fpv_whole_
 +        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_big_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/attitude_height_value" android:layout_width="@dimen/dp_100_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" android:layout_toRightOf="@id/attitude_height_title" phantom:attiTextFace="pirulen" />
 +        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:id="@id/fpv_sport_attitude_rpm_desc_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_10_in_sw320dp" android:text="RPM" android:layout_alignBaseline="@id/fpv_sport_attitude_rpm_tv" android:alpha="0.6" android:layout_toRightOf="@id/attitude_height_value" phantom:attiTextFace="pirulen" />
 +        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_big_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/fpv_sport_attitude_rpm_tv" android:layout_width="@dimen/dp_70_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" android:layout_toRightOf="@id/fpv_sport_attitude_rpm_desc_tv" phantom:attiTextFace="pirulen" />
-+        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:id="@id/in2_fpv_topbar_battery1_power_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_10_in_sw320dp" android:text="U" android:layout_alignBaseline="@id/in2_fpv_topbar_battery1_voltage_tv" android:alpha="0.6" android:layout_toRightOf="@id/fpv_sport_attitude_rpm_tv" phantom:attiTextFace="pirulen" />
-+        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_big_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/in2_fpv_topbar_battery1_voltage_tv" android:layout_width="@dimen/dp_70_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" android:layout_toRightOf="@id/in2_fpv_topbar_battery1_power_tv" phantom:attiTextFace="pirulen" />
      </RelativeLayout>
      <RelativeLayout android:orientation="horizontal" android:id="@id/attitude_speed_vps_ly" android:paddingBottom="@dimen/dp_10_in_sw320dp" android:layout_width="wrap_content" android:layout_height="@dimen/dp_30_in_sw320dp" android:layout_marginLeft="@dimen/dp_10_in_sw320dp" android:layout_alignBottom="@id/fpv_whole_atti_ly" android:layout_alignParentBottom="true">
          <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:id="@id/attitude_h_speed_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="H.S" android:layout_alignParentBottom="true" android:alpha="0.6" phantom:attiTextFace="pirulen" />
+@@ -19,5 +21,7 @@
+         <ImageView android:layout_gravity="center_vertical" android:id="@id/attitude_rc_dist_img" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/osd_rc_new_distance" android:layout_alignRight="@id/attitude_vps_title" android:layout_alignParentBottom="true" />
+         <ImageView android:layout_gravity="center_vertical" android:id="@id/attitude_visual_down_disable_img" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/attitude_visual_down_disable" android:layout_alignRight="@id/attitude_vps_title" android:layout_alignParentBottom="true" />
+         <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/attitude_vps_value" android:layout_width="@dimen/dp_110_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_8_in_sw320dp" android:text="N/A" android:maxLines="1" android:layout_toRightOf="@id/attitude_vps_title" android:layout_alignParentBottom="true" phantom:attiTextFace="pirulen" />
++        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:id="@id/in2_fpv_topbar_battery1_power_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="U" android:layout_alignBaseline="@id/in2_fpv_topbar_battery1_voltage_tv" android:alpha="0.6" android:layout_toRightOf="@id/attitude_vps_value" phantom:attiTextFace="pirulen" />
++        <dji.pilot.publics.widget.AttiFontTextView android:textSize="@dimen/new_fpv_attitude_txt_small_size" android:textColor="@color/white" android:ellipsize="end" android:id="@id/in2_fpv_topbar_battery1_voltage_tv" android:layout_width="@dimen/dp_70_in_sw320dp" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp_5_in_sw320dp" android:text="N/A" android:maxLines="1" android:layout_toRightOf="@id/in2_fpv_topbar_battery1_power_tv" phantom:attiTextFace="pirulen" />
+     </RelativeLayout>
+ </dji.pilot.newfpv.view.WholeAttitudeView>
+\ Kein Zeilenumbruch am Dateiende.
 diff -Naur orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali mod/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali
 --- orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali	2018-04-11 12:06:31.733554665 +0200
-+++ mod/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali	2021-02-04 23:02:44.786975357 +0100
++++ mod/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali	2021-04-16 23:46:45.473992967 +0200
 @@ -83,6 +83,12 @@
  
  .field private l:D
@@ -30,7 +37,7 @@ diff -Naur orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali mod
  .field private m:D
  
  .field private n:D
-@@ -111,6 +114,10 @@
+@@ -111,6 +117,10 @@
  
  .field private z:Ldji/pilot/fpv/control/DJIGenSettingDataManager;
  
@@ -41,7 +48,7 @@ diff -Naur orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali mod
  
  # direct methods
  .method static constructor <clinit>()V
-@@ -469,6 +474,16 @@
+@@ -469,6 +479,16 @@
  
      invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
  
@@ -58,7 +65,7 @@ diff -Naur orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali mod
      .line 163
      iget-object v0, p0, Ldji/pilot/newfpv/view/WholeAttitudeView;->k:Landroid/widget/ImageView;
  
-@@ -1754,6 +1764,109 @@
+@@ -1754,6 +1774,109 @@
      .line 553
      :cond_0
      :goto_0
@@ -168,7 +175,7 @@ diff -Naur orig/smali_classes5/dji/pilot/newfpv/view/WholeAttitudeView.smali mod
      return-void
  
      .line 519
-@@ -3253,6 +3316,28 @@
+@@ -3253,6 +3376,28 @@
  
      iput-object v0, p0, Ldji/pilot/newfpv/view/WholeAttitudeView;->f:Landroid/widget/TextView;
  
